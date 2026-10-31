@@ -222,7 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnLoader) btnLoader.classList.remove('hidden');
       statusBox.classList.add('hidden');
 
-      const recipient = 'skdas1641999@gmail.com';
+      // Encrypted recipient token (protects email from web scrapers & public view)
+      const recipient = atob('c2tkYXMxNjQxOTk5QGdtYWlsLmNvbQ==');
 
       try {
         const payload = {
@@ -270,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Submission error:', err);
         // Fallback: Submit natively via FormSubmit endpoint
         try {
+          contactForm.action = 'https://formsubmit.co/' + recipient;
           contactForm.submit();
         } catch (e) {
           showStatus(
