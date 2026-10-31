@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. Interactive 3D GPS Map Filtering & Live Telemetry Simulation
+     2. Interactive 3D GPS Map Filtering & Real-Time Trailing Polyline
      ========================================================================== */
   const filterPills = document.querySelectorAll('.filter-pill');
   const targetCar = document.getElementById('targetCar');
@@ -56,6 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const schoolGeofence = document.getElementById('schoolGeofence');
   const btnLiveSimToggle = document.getElementById('btnLiveSimToggle');
   const watchVideoBtn = document.getElementById('watchVideoBtn');
+
+  const carActiveTrail = document.getElementById('carActiveTrail');
+  const carLaserPulse = document.getElementById('carLaserPulse');
+  const pinStart = document.getElementById('pinStart');
+  const pinMid = document.getElementById('pinMid');
+  const pinDest = document.getElementById('pinDest');
+
+  const carSpeedBadge = document.querySelector('#targetCar .target-speed');
+  const carSubBadge = document.querySelector('#targetCar .target-card-sub span:first-child');
+  const priyaSpeedBadge = document.querySelector('#targetPriya .target-speed');
+  const bikeSpeedBadge = document.querySelector('#targetBike .target-speed');
 
   // Filter Pill Click Handlers
   filterPills.forEach(pill => {
@@ -95,19 +106,89 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Dynamic Telemetry Speed and Battery Fluctuations
+  // REAL-TIME SYNCHRONIZED CAR MOVEMENT & DYNAMIC TRAILING POLYLINE
   let isSimRunning = true;
-  const carSpeedBadge = document.querySelector('#targetCar .target-speed');
-  const priyaSpeedBadge = document.querySelector('#targetPriya .target-speed');
-  const bikeSpeedBadge = document.querySelector('#targetBike .target-speed');
+  let carProgress = 0; // 0.0 to 1.0
+  let lastTimestamp = null;
+  const loopDurationMs = 15000; // 15 seconds full circuit
 
-  const telemetryInterval = setInterval(() => {
-    if (!isSimRunning) return;
+  // Route parameters in SVG coordinate space (viewBox 0 0 1000 500)
+  const routeStartX = -40;
+  const routeEndX = 860; // Destination pin X
+  const routeY = 160;
 
-    if (carSpeedBadge) {
-      const speeds = ['41 km/h', '43 km/h', '46 km/h', '38 km/h', '42 km/h'];
-      carSpeedBadge.textContent = speeds[Math.floor(Math.random() * speeds.length)];
+  function animateCarAndPolyline(timestamp) {
+    if (!lastTimestamp) lastTimestamp = timestamp;
+    const delta = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+
+    if (isSimRunning) {
+      carProgress += delta / loopDurationMs;
+
+      // When reaching destination, hold for 2.2 seconds then reset smoothly
+      if (carProgress > 1.15) {
+        carProgress = 0;
+      }
+
+      // 0.0 to 0.85: Car is actively driving along MG Road
+      // 0.85 to 1.15: Car has reached destination, holding position
+      const driveProgress = Math.min(carProgress / 0.85, 1.0);
+      const currentX = routeStartX + driveProgress * (routeEndX - routeStartX);
+
+      // 1. DYNAMICALLY DRAW POLYLINE EXACTLY TO CAR'S CURRENT REAR/POSITION
+      // Polyline starts from -40 and extends to currentX in real-time as car moves
+      if (carActiveTrail) {
+        carActiveTrail.setAttribute('d', `M ${routeStartX},${routeY} L ${Math.round(currentX)},${routeY}`);
+      }
+      if (carLaserPulse) {
+        carLaserPulse.setAttribute('d', `M ${routeStartX},${routeY} L ${Math.round(currentX)},${routeY}`);
+      }
+
+      // 2. POSITION CAR DIV IN EXACT LOCKSTEP (1000 SVG units = 100% width)
+      if (targetCar) {
+        const carPercent = (currentX / 1000) * 100;
+        // Anchor car slightly forward so polyline attaches to rear taillight
+        targetCar.style.left = `calc(${carPercent}% - 32px)`;
+      }
+
+      // 3. REALISTIC SPEED & WAYPOINT TELEMETRY UPDATES
+      if (carSpeedBadge && carSubBadge) {
+        if (driveProgress < 0.22) {
+          carSpeedBadge.textContent = '38 km/h';
+          carSubBadge.textContent = 'Indiranagar (Starting)';
+          if (pinStart) pinStart.classList.add('pin-active');
+        } else if (driveProgress >= 0.22 && driveProgress < 0.45) {
+          carSpeedBadge.textContent = '44 km/h';
+          carSubBadge.textContent = 'MG Road • En Route';
+          if (pinStart) pinStart.classList.remove('pin-active');
+        } else if (driveProgress >= 0.45 && driveProgress < 0.58) {
+          // Slow down near Trinity Circle
+          carSpeedBadge.textContent = '22 km/h';
+          carSubBadge.textContent = 'Trinity Circle (Junction)';
+          if (pinMid) pinMid.classList.add('pin-active');
+        } else if (driveProgress >= 0.58 && driveProgress < 0.88) {
+          carSpeedBadge.textContent = '48 km/h';
+          carSubBadge.textContent = 'Brigade Rd Arterial';
+          if (pinMid) pinMid.classList.remove('pin-active');
+          if (pinDest) pinDest.classList.remove('pin-active');
+        } else {
+          // Arrived at destination
+          carSpeedBadge.textContent = '0 km/h (Reached)';
+          carSubBadge.textContent = '✓ MG Road Central (0m)';
+          if (pinDest) pinDest.classList.add('pin-active');
+        }
+      }
     }
+
+    requestAnimationFrame(animateCarAndPolyline);
+  }
+
+  // Start the 60fps animation loop
+  requestAnimationFrame(animateCarAndPolyline);
+
+  // Background pedestrian and bike fluctuating speeds
+  setInterval(() => {
+    if (!isSimRunning) return;
     if (priyaSpeedBadge) {
       const speeds = ['3.8 km/h', '4.2 km/h', '4.0 km/h'];
       priyaSpeedBadge.textContent = speeds[Math.floor(Math.random() * speeds.length)];
@@ -122,9 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnLiveSimToggle) {
     btnLiveSimToggle.addEventListener('click', () => {
       isSimRunning = !isSimRunning;
+      lastTimestamp = performance.now(); // avoid delta time-jump on resume
       const playState = isSimRunning ? 'running' : 'paused';
 
-      if (targetCar) targetCar.style.animationPlayState = playState;
       if (targetPriya) targetPriya.style.animationPlayState = playState;
       if (targetBike) targetBike.style.animationPlayState = playState;
 
