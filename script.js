@@ -3,7 +3,7 @@
  * Features:
  *  1. 3D Mouse Parallax & Dynamic Perspective Tilt
  *  2. Real 3D Human Walk & Location Matcher Simulation
- *  3. FormSubmit.co Integration (skdas1641999@gmail.com)
+ *  3. FormSubmit.co Integration (Secure & Protected Endpoint)
  *  4. Native Laptop Map Car Tracking Simulation
  *  5. Phone GPS Permission Toggle
  *  6. Mobile Navigation & Smooth Scroll
@@ -26,149 +26,131 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     1. 3D Stage Mouse Parallax & Depth Tracking
+     1. 3D Stage Mouse Parallax & Dynamic Perspective Tilt
      ========================================================================== */
   const stage = document.getElementById('stage3dWorld');
-  const boyActor = document.getElementById('boyActor');
-  const girlActor = document.getElementById('girlActor');
-  const centerPhone = document.getElementById('centerPhone');
+  const mapViewport = document.getElementById('mapViewport');
 
-  if (stage && boyActor && girlActor && centerPhone) {
+  if (stage && mapViewport) {
     stage.addEventListener('mousemove', (e) => {
-      if (stage.classList.contains('walking')) return; // Do not interrupt walk cycle
-
       const rect = stage.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
       const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-      // 3D tilts with distinct depth offsets
-      centerPhone.style.transform = `perspective(800px) rotateY(${x * 14}deg) rotateX(${-y * 10 + 4}deg) translateZ(20px)`;
-      boyActor.style.transform = `perspective(800px) rotateY(${12 + x * 10}deg) translateX(${x * 12}px) translateY(${y * 6}px)`;
-      girlActor.style.transform = `perspective(800px) rotateY(${-12 + x * 10}deg) translateX(${x * 12}px) translateY(${y * 6}px)`;
+      // Realistic subtle 3D tilt of the city grid
+      mapViewport.style.transform = `perspective(1000px) rotateX(${18 - y * 12}deg) rotateY(${x * 10}deg) scale(1.02)`;
     });
 
     stage.addEventListener('mouseleave', () => {
-      if (stage.classList.contains('walking')) return;
-      centerPhone.style.transform = 'perspective(800px) rotateY(0deg) rotateX(4deg)';
-      boyActor.style.transform = 'perspective(800px) rotateY(12deg)';
-      girlActor.style.transform = 'perspective(800px) rotateY(-12deg)';
+      mapViewport.style.transform = 'perspective(1000px) rotateX(18deg) rotateY(0deg) scale(1)';
     });
   }
 
   /* ==========================================================================
-     2. Real 3D Human Walk & Live Location Matcher Simulation
+     2. Interactive 3D GPS Map Filtering & Live Telemetry Simulation
      ========================================================================== */
-  const triggerMeetupBtn = document.getElementById('triggerMeetupBtn');
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const targetCar = document.getElementById('targetCar');
+  const targetPriya = document.getElementById('targetPriya');
+  const targetBike = document.getElementById('targetBike');
+  const schoolGeofence = document.getElementById('schoolGeofence');
+  const btnLiveSimToggle = document.getElementById('btnLiveSimToggle');
   const watchVideoBtn = document.getElementById('watchVideoBtn');
-  const liveDistText = document.getElementById('liveDistText');
-  const liveProgressBar = document.getElementById('liveProgressBar');
-  const matchPopupBanner = document.getElementById('matchPopupBanner');
-  const motionStatusText = document.getElementById('motionStatusText');
-  const hudState = document.getElementById('hudState');
-  const hudUpdated = document.getElementById('hudUpdated');
 
-  let isWalking = false;
-  let walkTimer = null;
+  // Filter Pill Click Handlers
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
 
-  function start3DWalkSimulation() {
-    if (isWalking) {
-      reset3DWalkSimulation();
-      return;
-    }
+      const target = pill.getAttribute('data-target');
 
-    isWalking = true;
-    stage.classList.remove('celebrating');
-    stage.classList.add('walking');
-    triggerMeetupBtn.innerHTML = '&#8635; Reset 3D Walk';
-    
-    if (hudState) {
-      hudState.textContent = 'Searching...';
-      hudState.style.background = '#e1f5fe';
-      hudState.style.color = '#0288d1';
-    }
-    if (matchPopupBanner) matchPopupBanner.classList.remove('show');
-
-    const steps = [
-      { dist: 850, pct: 75, boyPos: '6%', girlPos: '6%', text: '🛰️ Pinging GPS Satellites... Live signal acquired on MG Road (850m away)' },
-      { dist: 620, pct: 60, boyPos: '12%', girlPos: '12%', text: '🚶 Both avatars started walking on street pavement... (Pacing &bull; 4.5 km/h)' },
-      { dist: 410, pct: 40, boyPos: '18%', girlPos: '18%', text: '📡 Radar locked! Feet striding closer along Trinity Circle (410m away)' },
-      { dist: 180, pct: 20, boyPos: '23%', girlPos: '23%', text: '👀 Visual proximity detected on live phone map! (180m away)' },
-      { dist: 40, pct: 5, boyPos: '26%', girlPos: '26%', text: '👣 Arriving at meetup junction... Feet slowing down (40m away)' },
-      { dist: 0, pct: 0, boyPos: '28%', girlPos: '28%', text: '&#10004; <strong>Location Matched!</strong> Rahul &amp; Priya met at destination (0m) &bull; Connected!' }
-    ];
-
-    let stepIdx = 0;
-
-    walkTimer = setInterval(() => {
-      stepIdx++;
-      if (stepIdx < steps.length) {
-        const item = steps[stepIdx];
-        if (liveDistText) liveDistText.textContent = item.dist + 'm';
-        if (liveProgressBar) liveProgressBar.style.width = item.pct + '%';
-        if (motionStatusText) motionStatusText.innerHTML = item.text;
-        if (hudUpdated) hudUpdated.textContent = 'Just now';
-        
-        // Progressively walk along street
-        if (boyActor) boyActor.style.left = item.boyPos;
-        if (girlActor) girlActor.style.right = item.girlPos;
-      } else {
-        clearInterval(walkTimer);
-        // Destination Reached!
-        stage.classList.remove('walking');
-        stage.classList.add('celebrating');
-
-        if (liveDistText) liveDistText.textContent = '0m (Connected!)';
-        if (liveProgressBar) liveProgressBar.style.width = '0%';
-        if (hudState) {
-          hudState.textContent = 'Connected!';
-          hudState.style.background = '#e2fbf4';
-          hudState.style.color = '#009371';
+      // Reset opacity and scale
+      [targetCar, targetPriya, targetBike].forEach(t => {
+        if (t) {
+          t.style.opacity = '1';
+          t.style.transform = '';
+          t.style.zIndex = '8';
         }
-        if (matchPopupBanner) {
-          matchPopupBanner.classList.add('show');
-        }
+      });
+      if (schoolGeofence) schoolGeofence.style.boxShadow = '';
+
+      if (target === 'car' && targetCar) {
+        if (targetPriya) targetPriya.style.opacity = '0.25';
+        if (targetBike) targetBike.style.opacity = '0.25';
+        targetCar.style.transform = 'scale(1.15)';
+        targetCar.style.zIndex = '15';
+      } else if (target === 'priya' && targetPriya) {
+        if (targetCar) targetCar.style.opacity = '0.25';
+        if (targetBike) targetBike.style.opacity = '0.25';
+        targetPriya.style.transform = 'scale(1.15)';
+        targetPriya.style.zIndex = '15';
+        if (schoolGeofence) schoolGeofence.style.boxShadow = '0 0 24px rgba(0, 186, 144, 0.6)';
+      } else if (target === 'bike' && targetBike) {
+        if (targetCar) targetCar.style.opacity = '0.25';
+        if (targetPriya) targetPriya.style.opacity = '0.25';
+        targetBike.style.transform = 'scale(1.15)';
+        targetBike.style.zIndex = '15';
       }
-    }, 1000);
+    });
+  });
+
+  // Dynamic Telemetry Speed and Battery Fluctuations
+  let isSimRunning = true;
+  const carSpeedBadge = document.querySelector('#targetCar .target-speed');
+  const priyaSpeedBadge = document.querySelector('#targetPriya .target-speed');
+  const bikeSpeedBadge = document.querySelector('#targetBike .target-speed');
+
+  const telemetryInterval = setInterval(() => {
+    if (!isSimRunning) return;
+
+    if (carSpeedBadge) {
+      const speeds = ['41 km/h', '43 km/h', '46 km/h', '38 km/h', '42 km/h'];
+      carSpeedBadge.textContent = speeds[Math.floor(Math.random() * speeds.length)];
+    }
+    if (priyaSpeedBadge) {
+      const speeds = ['3.8 km/h', '4.2 km/h', '4.0 km/h'];
+      priyaSpeedBadge.textContent = speeds[Math.floor(Math.random() * speeds.length)];
+    }
+    if (bikeSpeedBadge) {
+      const speeds = ['26 km/h', '31 km/h', '28 km/h', '34 km/h'];
+      bikeSpeedBadge.textContent = speeds[Math.floor(Math.random() * speeds.length)];
+    }
+  }, 2500);
+
+  // Play / Pause Simulation Toggle
+  if (btnLiveSimToggle) {
+    btnLiveSimToggle.addEventListener('click', () => {
+      isSimRunning = !isSimRunning;
+      const playState = isSimRunning ? 'running' : 'paused';
+
+      if (targetCar) targetCar.style.animationPlayState = playState;
+      if (targetPriya) targetPriya.style.animationPlayState = playState;
+      if (targetBike) targetBike.style.animationPlayState = playState;
+
+      const metroTrain = document.querySelector('.metro-train');
+      if (metroTrain) metroTrain.style.animationPlayState = playState;
+
+      if (isSimRunning) {
+        btnLiveSimToggle.innerHTML = '&#9679; Live Tracking Active';
+        btnLiveSimToggle.classList.remove('btn-secondary');
+        btnLiveSimToggle.classList.add('btn-primary');
+      } else {
+        btnLiveSimToggle.innerHTML = '&#10074;&#10074; Simulation Paused';
+        btnLiveSimToggle.classList.remove('btn-primary');
+        btnLiveSimToggle.classList.add('btn-secondary');
+      }
+    });
   }
 
-  function reset3DWalkSimulation() {
-    isWalking = false;
-    clearInterval(walkTimer);
-    if (stage) {
-      stage.classList.remove('walking');
-      stage.classList.remove('celebrating');
-    }
-
-    if (boyActor) boyActor.style.left = '4%';
-    if (girlActor) girlActor.style.right = '4%';
-
-    if (liveDistText) liveDistText.textContent = '850m';
-    if (liveProgressBar) liveProgressBar.style.width = '75%';
-    if (hudState) {
-      hudState.textContent = 'Active';
-      hudState.style.background = '#e2fbf4';
-      hudState.style.color = '#009371';
-    }
-    if (motionStatusText) {
-      motionStatusText.textContent = 'Both 3D avatars are tracking live location via GPS.';
-    }
-    if (matchPopupBanner) {
-      matchPopupBanner.classList.remove('show');
-    }
-    if (triggerMeetupBtn) {
-      triggerMeetupBtn.innerHTML = '&#9654; Walk &amp; Connect Location';
-    }
-  }
-
-  if (triggerMeetupBtn) {
-    triggerMeetupBtn.addEventListener('click', start3DWalkSimulation);
-  }
-
+  // "View Live 3D Map" CTA button in Hero Section
   if (watchVideoBtn) {
     watchVideoBtn.addEventListener('click', () => {
-      start3DWalkSimulation();
       if (stage) {
         stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Pulse highlight on Car filter
+        const carFilter = document.querySelector('.filter-pill[data-target="car"]');
+        if (carFilter) carFilter.click();
       }
     });
   }

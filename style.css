@@ -237,8 +237,9 @@ a {
 }
 
 .nav-link:focus-visible {
-  outline: 2px solid rgba(11, 116, 244, 0.35);
-  outline-offset: 2px;
+  outline: none;
+  background: rgba(11, 116, 244, 0.08);
+  border-radius: 8px;
 }
 
 .nav-link:hover {
@@ -1405,655 +1406,788 @@ a {
   50% { transform: translateY(-14px); }
 }
 
-/* 3D Human Actors (Boy & Girl) */
-.human-actor {
+/* ==========================================================================
+   Full-Bleed 3D Live GPS City Tracking Command Map
+   ========================================================================== */
+
+.map-full-dashboard {
+  height: 520px;
+  position: relative;
+  background: 
+    radial-gradient(ellipse at 50% 80%, rgba(11, 116, 244, 0.08) 0%, transparent 65%),
+    linear-gradient(160deg, #f0f7fe 0%, #e2f1fc 60%, #e8f9f3 100%);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(186, 220, 248, 0.85);
+  box-shadow: 0 24px 60px rgba(11, 55, 110, 0.14);
+  overflow: hidden;
+  perspective: 1200px;
+  display: block;
+}
+
+/* Floating Glassmorphism Top HUD Bar */
+.map-hud-top-bar {
   position: absolute;
-  bottom: 12px;
-  z-index: 15;
+  top: 12px;
+  left: 14px;
+  right: 14px;
+  z-index: 25;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.4, 1), left 0.8s ease, right 0.8s ease;
-  will-change: transform, left, right;
+  justify-content: space-between;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  box-shadow: 0 6px 20px rgba(14, 38, 77, 0.08);
+  pointer-events: auto;
 }
 
-.boy-actor {
-  left: 4%;
-  transform: perspective(800px) rotateY(14deg);
-}
-
-.girl-actor {
-  right: 4%;
-  transform: perspective(800px) rotateY(-14deg);
-}
-
-.avatar-tag {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-pill);
-  padding: 4px 12px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--dark-navy);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.hud-stat-chip {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 6px;
-}
-
-.online-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00ba90;
-  display: inline-block;
-  animation: pulseGreen 1.5s infinite;
-}
-
-/* 3D Skeletal Characters (Multi-Limb Articulated Human) */
-.skeletal-body {
-  position: relative;
-  height: 300px;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.boy-body {
-  width: 140px;
-}
-
-.girl-body {
-  width: 161px;
-}
-
-.sk-limb {
-  position: absolute;
-  pointer-events: none;
-  transform-style: preserve-3d;
-}
-
-.sk-limb .sk-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 14px 22px rgba(14, 38, 77, 0.2));
-}
-
-/* Rahul Limbs Positioning (exact mathematical proportions based on 437x934) */
-.boy-torso {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 62.1%; /* 580/934 */
-  z-index: 5;
-}
-
-.boy-leg-left {
-  top: 55.67%; /* 520/934 */
-  left: 0%;
-  width: 52.63%; /* 230/437 */
-  height: 44.33%; /* 414/934 */
-  z-index: 3;
-  transform-origin: 52% 10%;
-}
-
-.boy-leg-right {
-  top: 55.67%; /* 520/934 */
-  left: 45.77%; /* 200/437 */
-  width: 54.23%; /* 237/437 */
-  height: 44.33%; /* 414/934 */
-  z-index: 2;
-  transform-origin: 50% 10%;
-}
-
-/* Priya Limbs Positioning (exact mathematical proportions based on 498x925) */
-.girl-torso {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60.54%; /* 560/925 */
-  z-index: 5;
-}
-
-.girl-leg-left {
-  top: 56.22%; /* 520/925 */
-  left: 10.04%; /* 50/498 */
-  width: 42.17%; /* 210/498 */
-  height: 43.78%; /* 405/925 */
-  z-index: 3;
-  transform-origin: 50% 10%;
-}
-
-.girl-leg-right {
-  top: 56.22%; /* 520/925 */
-  left: 48.19%; /* 240/498 */
-  width: 42.17%; /* 210/498 */
-  height: 43.78%; /* 405/925 */
-  z-index: 2;
-  transform-origin: 50% 10%;
-}
-
-/* Idle Breathing/Weight Shift */
-.boy-body .boy-torso {
-  animation: idleTorsoBoy 4s ease-in-out infinite;
-}
-
-.girl-body .girl-torso {
-  animation: idleTorsoGirl 4.5s ease-in-out infinite;
-}
-
-@keyframes idleTorsoBoy {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-5px) rotate(-0.5deg); }
-}
-
-@keyframes idleTorsoGirl {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(0.6deg); }
-}
-
-/* Dual Foot Ground Shadows under Soles */
-.dual-foot-shadows {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  height: 16px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.foot-shadow {
-  position: absolute;
-  bottom: 2px;
-  width: 46px;
-  height: 12px;
-  background: radial-gradient(ellipse at center, rgba(14, 38, 77, 0.45) 0%, transparent 75%);
-  border-radius: 50%;
-  transition: all 0.25s ease;
-}
-
-.boy-shadow-l { left: 16px; }
-.boy-shadow-r { left: 78px; }
-
-.girl-shadow-l { left: 22px; }
-.girl-shadow-r { left: 88px; }
-
-/* Footstep Impact Ripple Rings on Road */
-.footstep-ripple {
-  position: absolute;
-  bottom: 2px;
-  width: 30px;
-  height: 12px;
-  border: 2px solid #00ba90;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Sonar Radar Waves from Handheld Phone */
-.phone-radar {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.radar-boy {
-  left: 18%;
-  top: 66%;
-  right: auto;
-}
-
-.radar-girl {
-  right: 8%;
-  top: 60%;
-  left: auto;
-}
-
-.radar-wave {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0, 186, 144, 0.65);
-  box-shadow: 0 0 8px rgba(0, 186, 144, 0.35);
-  animation: sonarRadar 2.2s cubic-bezier(0.1, 0.5, 0.7, 1) infinite;
-}
-
-.radar-wave.wave-2 {
-  animation-delay: 1.1s;
-  border-color: rgba(11, 116, 244, 0.65);
-  box-shadow: 0 0 8px rgba(11, 116, 244, 0.35);
-}
-
-@keyframes sonarRadar {
-  0% { transform: scale(0.3); opacity: 0.85; }
-  100% { transform: scale(1.8); opacity: 0; }
-}
-
-/* Central 3D Smartphone */
-.phone-3d-center {
-  position: relative;
-  z-index: 12;
-  margin-bottom: 24px;
-  transform: perspective(800px) rotateY(0deg) rotateX(4deg);
-  transition: transform 0.5s ease;
-}
-
-.phone-case {
-  width: 215px;
-  height: 380px;
-  background: #ffffff;
-  border: 8px solid #14213d;
-  border-radius: 36px;
-  box-shadow: 
-    0 24px 50px rgba(11, 48, 92, 0.25),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.phone-top-bar {
-  background: #ffffff;
-  padding: 8px 14px 4px 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.65rem;
-  font-weight: 800;
+  font-size: 0.78rem;
   color: var(--dark-navy);
 }
 
-.phone-speaker {
-  width: 44px;
-  height: 4px;
-  background: #14213d;
-  border-radius: 4px;
+.live-signal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ba90;
+  box-shadow: 0 0 8px #00ba90;
+  animation: pulseGreen 1.4s infinite;
 }
 
-.phone-map-view {
-  flex-grow: 1;
-  background: #eef6f1;
-  position: relative;
-  overflow: hidden;
+.chip-satellite {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
 }
 
-.map-grid-roads {
-  position: absolute;
-  inset: -20%;
-  background: 
-    repeating-linear-gradient(0deg, transparent 0 38px, #ffffff 39px 50px, transparent 51px 90px),
-    repeating-linear-gradient(90deg, transparent 0 44px, #ffffff 45px 56px, transparent 57px 100px);
-  transform: rotate(20deg);
-  opacity: 0.9;
+.hud-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.map-route-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
+.filter-pill {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Phone Telemetry HUD Card */
-.phone-hud {
+.filter-pill:hover,
+.filter-pill.active {
+  background: var(--primary-blue);
+  color: #ffffff;
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(11, 116, 244, 0.35);
+}
+
+/* Floating Glassmorphism Bottom Telemetry Bar */
+.map-hud-bottom-bar {
   position: absolute;
   bottom: 12px;
-  left: 10px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(226, 237, 246, 0.9);
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
-  box-shadow: 0 8px 20px rgba(11, 48, 92, 0.1);
-  z-index: 5;
-}
-
-.hud-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4px;
-}
-
-.hud-status {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.72rem;
+  left: 14px;
+  right: 14px;
+  z-index: 25;
   display: flex;
   align-items: center;
-  gap: 4px;
-}
-
-.green-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00ba90;
-  display: inline-block;
-  animation: pulseGreen 1.5s infinite;
-}
-
-.hud-badge {
-  font-size: 0.62rem;
-  font-weight: 800;
-  background: #e2fbf4;
-  color: #009371;
-  padding: 1px 6px;
-  border-radius: 8px;
-}
-
-.hud-meta {
-  display: flex;
   justify-content: space-between;
-  border-top: 1px solid #f0f4f8;
-  padding-top: 4px;
-  margin-bottom: 4px;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  box-shadow: 0 -4px 22px rgba(14, 38, 77, 0.08);
+  pointer-events: auto;
 }
 
-.hud-meta small {
-  display: block;
-  font-size: 0.62rem;
-  color: var(--text-muted);
-}
-
-.hud-meta b {
-  font-size: 0.7rem;
-  color: var(--dark-navy);
-}
-
-.hud-distance {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.dist-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.68rem;
-  color: var(--primary-blue);
-  font-weight: 700;
-}
-
-.dist-progress-track {
-  height: 4px;
-  background: #e4edf5;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.dist-progress-bar {
-  height: 100%;
-  width: 75%;
-  background: var(--gradient-brand);
-  border-radius: 4px;
-  transition: width 0.4s ease;
-}
-
-/* Celebration Match Popup */
-.match-popup-banner {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-30px);
-  background: #00ba90;
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 12px 30px rgba(0, 186, 144, 0.4);
+.telemetry-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 50;
-  opacity: 0;
+}
+
+.tel-icon {
+  font-size: 1.3rem;
+}
+
+.telemetry-item small {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.telemetry-item strong {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--dark-navy);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#btnLiveSimToggle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+}
+
+/* Safe Geofence Zone */
+.geofence-zone-circle {
+  position: absolute;
+  top: 4%;
+  right: 15%;
+  width: 170px;
+  height: 170px;
   pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+}
+
+.geofence-radar-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 186, 144, 0.18) 0%, rgba(0, 186, 144, 0.04) 70%, transparent 100%);
+  animation: geofencePulse 3s ease-out infinite;
+}
+
+.geofence-boundary {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px dashed #00ba90;
+  animation: geofenceRotate 20s linear infinite;
+}
+
+.geofence-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 186, 144, 0.95);
+  color: #ffffff;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.62rem;
+  font-weight: 800;
   white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 186, 144, 0.3);
 }
 
-.match-popup-banner.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
+@keyframes geofencePulse {
+  0% { transform: scale(0.85); opacity: 0.9; }
+  100% { transform: scale(1.15); opacity: 0.2; }
 }
 
-.celebration-emoji {
-  font-size: 1.4rem;
+@keyframes geofenceRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.match-popup-banner strong {
-  display: block;
-  font-size: 0.88rem;
+/* Zone Labels & Details */
+.zone-label {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #15803d;
+  letter-spacing: 0.02em;
 }
 
-.match-popup-banner small {
-  display: block;
-  font-size: 0.72rem;
-  opacity: 0.95;
+.blue-lake .zone-label {
+  color: #0369a1;
+}
+
+.park-pond {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  width: 36px;
+  height: 24px;
+  background: #bae6fd;
+  border: 1px solid #7dd3fc;
+  border-radius: 50%;
+}
+
+.lake-ripple {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 40px;
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: rippleOnStep 4s ease-out infinite;
+}
+
+.lake-boat {
+  position: absolute;
+  top: 36%;
+  left: 32%;
+  width: 14px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 2px 2px 5px 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Additional 3D City Buildings */
+.building-highrise {
+  width: 52px;
+  height: 85px;
+}
+
+.pos-tower-1 {
+  top: 4%;
+  left: 42%;
+}
+
+.highrise-roof {
+  height: 8px;
+  background: #334155;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+
+.beacon-light {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 6px;
+  background: #ef4444;
+  box-shadow: 0 0 6px #ef4444;
+  animation: pulseRed 1s infinite;
+}
+
+.highrise-body {
+  height: 77px;
+  background: linear-gradient(90deg, #38bdf8 0%, #0284c7 60%, #0369a1 100%);
+  border: 1px solid #0284c7;
+  padding: 3px;
+}
+
+.tower-glass-grid {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* School Building */
+.building-school {
+  width: 56px;
+  height: 48px;
+}
+
+.pos-school {
+  top: 8%;
+  right: 18%;
+}
+
+.school-roof {
+  height: 0;
+  border-left: 28px solid transparent;
+  border-right: 28px solid transparent;
+  border-bottom: 12px solid #b45309;
+}
+
+.school-body {
+  height: 36px;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 0 0 4px 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+}
+
+.school-clock {
+  font-size: 0.6rem;
+  color: #92400e;
+}
+
+.school-door {
+  width: 8px;
+  height: 10px;
+  background: #78350f;
+  border-radius: 2px 2px 0 0;
+}
+
+/* Hospital Building */
+.building-hospital {
+  width: 48px;
+  height: 44px;
+}
+
+.pos-hospital {
+  top: 52%;
+  left: 8%;
+}
+
+.hospital-roof {
+  height: 10px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 3px 3px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.red-cross {
+  color: #dc2626;
+  font-weight: 900;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.hospital-body {
+  height: 34px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 0 0 3px 3px;
+  background-image: radial-gradient(#38bdf8 1.5px, transparent 1.5px);
+  background-size: 6px 6px;
+}
+
+/* Metro Station */
+.building-metro {
+  position: absolute;
+  top: 50%;
+  right: 6%;
+  width: 64px;
+  height: 28px;
+}
+
+.metro-canopy {
+  height: 6px;
+  background: #00ba90;
+  border-radius: 4px 4px 0 0;
+}
+
+.metro-track {
+  height: 20px;
+  background: #e2e8f0;
+  border: 1px dashed #94a3b8;
+  position: relative;
+  overflow: hidden;
+}
+
+.metro-train {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 26px;
+  height: 12px;
+  background: #0b74f4;
+  border-radius: 3px 8px 8px 3px;
+  animation: trainRun 6s ease-in-out infinite alternate;
+}
+
+@keyframes trainRun {
+  0% { left: -10px; }
+  100% { left: 40px; }
+}
+
+/* Crosswalks (Zebra Crossings) */
+.crosswalk {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  background: repeating-linear-gradient(90deg, #ffffff 0 3px, transparent 3px 6px);
+  opacity: 0.9;
+}
+
+.crosswalk-left { left: 30%; }
+.crosswalk-right { right: 28%; }
+.crosswalk-center { left: 52%; }
+
+.street-h3 {
+  bottom: 12%;
+  left: 0;
+  right: 0;
+  height: 18px;
+  border-top: 1px solid #d5e5f2;
+  border-bottom: 1px solid #d5e5f2;
+}
+
+.street-lane-dash-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: repeating-linear-gradient(180deg, #b0cbe3 0 16px, transparent 16px 30px);
+  transform: translateX(-50%);
+  opacity: 0.75;
+}
+
+/* Traffic Lights */
+.traffic-light {
+  position: absolute;
+  width: 9px;
+  height: 22px;
+  background: #1e293b;
+  border-radius: 3px;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.traffic-light .light {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #475569;
+}
+
+.traffic-light .light.red.active {
+  background: #ef4444;
+  box-shadow: 0 0 6px #ef4444;
+}
+
+.traffic-light .light.green.active {
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
 }
 
 /* ==========================================================================
-   AUTHENTIC HUMAN WALKING SKELETAL PHYSICS
-   ("pair human ki tarah move karna chahiye")
+   LIVE MOVING TARGETS & TELEMETRY POPUPS
    ========================================================================== */
 
-.stage-3d-world.walking .boy-actor {
-  left: 24%;
-  transform: perspective(800px) rotateY(16deg);
+.map-live-targets {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
 }
 
-.stage-3d-world.walking .girl-actor {
-  right: 24%;
-  transform: perspective(800px) rotateY(-16deg);
+.live-target {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.2s ease;
 }
 
-/* Rahul Walking Cadence: Left leg steps, Right leg pushes, Torso bobs */
-.stage-3d-world.walking .boy-leg-left {
-  animation: boyWalkLegL 0.7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+/* Target 1: Rahul's Car */
+.target-car {
+  top: calc(32% - 24px);
+  animation: carMapPath 16s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
 }
 
-.stage-3d-world.walking .boy-leg-right {
-  animation: boyWalkLegR 0.7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+@keyframes carMapPath {
+  0% { left: -80px; }
+  40% { left: 35%; }
+  45% { left: 40%; }
+  75% { left: 70%; }
+  95% { left: 104%; }
+  100% { left: 104%; }
 }
 
-.stage-3d-world.walking .boy-torso {
-  animation: boyWalkTorso 0.7s ease-in-out infinite;
+/* Target 2: Priya (Child Walking) */
+.target-priya {
+  top: 14%;
+  left: 68%;
+  animation: priyaWalkRoute 12s ease-in-out infinite alternate;
 }
 
-@keyframes boyWalkLegL {
-  0% { transform: rotate(-24deg) translateY(-2px); }
-  25% { transform: rotate(0deg) translateY(-8px); } /* passing high-step knee lift */
-  50% { transform: rotate(22deg) translateY(2px); }  /* trailing toe-off push */
-  75% { transform: rotate(4deg) translateY(-2px); }
-  100% { transform: rotate(-24deg) translateY(-2px); }
+@keyframes priyaWalkRoute {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(45px) translateX(-20px); }
+  100% { transform: translateY(80px) translateX(-60px); }
 }
 
-@keyframes boyWalkLegR {
-  0% { transform: rotate(22deg) translateY(2px); }   /* trailing toe-off push */
-  25% { transform: rotate(4deg) translateY(-2px); }
-  50% { transform: rotate(-24deg) translateY(-2px); } /* forward stride impact */
-  75% { transform: rotate(0deg) translateY(-8px); }  /* passing high-step knee lift */
-  100% { transform: rotate(22deg) translateY(2px); }
+/* Target 3: Courier Bike */
+.target-bike {
+  top: calc(55% - 20px);
+  animation: bikeCrossPath 13s linear infinite;
 }
 
-@keyframes boyWalkTorso {
-  0%, 50%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-7px) rotate(-1.5deg); }
-  75% { transform: translateY(-7px) rotate(1.5deg); }
+@keyframes bikeCrossPath {
+  0% { right: -60px; }
+  100% { right: 104%; }
 }
 
-/* Priya Walking Cadence */
-.stage-3d-world.walking .girl-leg-left {
-  animation: girlWalkLegL 0.7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  animation-delay: 0.1s;
+/* Telemetry Cards */
+.target-card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #bcead0;
+  border-radius: 8px;
+  padding: 4px 10px;
+  box-shadow: 0 4px 14px rgba(11, 55, 110, 0.16);
+  white-space: nowrap;
+  margin-bottom: 2px;
 }
 
-.stage-3d-world.walking .girl-leg-right {
-  animation: girlWalkLegR 0.7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  animation-delay: 0.1s;
+.card-priya {
+  border-color: #fbcfe8;
 }
 
-.stage-3d-world.walking .girl-torso {
-  animation: girlWalkTorso 0.7s ease-in-out infinite;
-  animation-delay: 0.1s;
+.card-bike {
+  border-color: #fed7aa;
 }
 
-@keyframes girlWalkLegL {
-  0% { transform: rotate(-22deg) translateY(-2px); }
-  25% { transform: rotate(0deg) translateY(-8px); }
-  50% { transform: rotate(24deg) translateY(2px); }
-  75% { transform: rotate(4deg) translateY(-2px); }
-  100% { transform: rotate(-22deg) translateY(-2px); }
-}
-
-@keyframes girlWalkLegR {
-  0% { transform: rotate(24deg) translateY(2px); }
-  25% { transform: rotate(4deg) translateY(-2px); }
-  50% { transform: rotate(-22deg) translateY(-2px); }
-  75% { transform: rotate(0deg) translateY(-8px); }
-  100% { transform: rotate(24deg) translateY(2px); }
-}
-
-@keyframes girlWalkTorso {
-  0%, 50%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-7px) rotate(1.5deg); }
-  75% { transform: translateY(-7px) rotate(-1.5deg); }
-}
-
-/* Dynamic Alternating Sole Shadows on Pavement */
-.stage-3d-world.walking .foot-shadow-l {
-  animation: shadowWalkL 0.7s ease-in-out infinite;
-}
-
-.stage-3d-world.walking .foot-shadow-r {
-  animation: shadowWalkR 0.7s ease-in-out infinite;
-}
-
-@keyframes shadowWalkL {
-  0%, 100% { opacity: 0.8; transform: scale(1.15); }
-  50% { opacity: 0.2; transform: scale(0.65); }
-}
-
-@keyframes shadowWalkR {
-  0%, 100% { opacity: 0.2; transform: scale(0.65); }
-  50% { opacity: 0.8; transform: scale(1.15); }
-}
-
-/* Active City Map Scrolling & Road Movement During Location Search */
-.stage-3d-world.walking .highway-lane-dashes {
-  animation: highwayDashesScroll 0.8s linear infinite;
-  background-size: 50px 3px;
-}
-
-@keyframes highwayDashesScroll {
-  from { background-position-x: 0; }
-  to { background-position-x: 50px; }
-}
-
-.stage-3d-world.walking .city-map-grid {
-  animation: mapSearchingPan 10s ease-in-out infinite alternate;
-}
-
-@keyframes mapSearchingPan {
-  0% { transform: scale(1) translateX(0); }
-  50% { transform: scale(1.04) translateX(-12px); }
-  100% { transform: scale(1) translateX(12px); }
-}
-
-/* Phone GPS Map Route Panning */
-.stage-3d-world.walking .map-grid-roads {
-  animation: phoneRoadsPan 4s linear infinite;
-}
-
-@keyframes phoneRoadsPan {
-  0% { transform: rotate(20deg) translateY(0); }
-  100% { transform: rotate(20deg) translateY(-30px); }
-}
-
-/* Celebration state when arrived */
-.stage-3d-world.celebrating .boy-actor {
-  left: 27%;
-  transform: perspective(800px) rotateY(6deg);
-}
-
-.stage-3d-world.celebrating .girl-actor {
-  right: 27%;
-  transform: perspective(800px) rotateY(-6deg);
-}
-
-.stage-3d-world.celebrating .boy-torso,
-.stage-3d-world.celebrating .girl-torso {
-  animation: celebrateCheer 1.2s ease-in-out infinite alternate;
-}
-
-@keyframes celebrateCheer {
-  0% { transform: translateY(0) scale(1); }
-  100% { transform: translateY(-10px) scale(1.03); }
-}
-
-/* Footstep Impact Rings on the Road Surface */
-.stage-3d-world.walking .footstep-ripple {
-  animation: rippleOnStep 0.7s ease-out infinite;
-}
-
-@keyframes rippleOnStep {
-  0% {
-    transform: scale(0.6);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(3.5);
-    opacity: 0;
-  }
-}
-
-/* Interactive Motion Controller */
-.human-motion-controller {
-  margin-top: 14px;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 12px 18px;
+.target-card-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  box-shadow: var(--shadow-sm);
-  width: 100%;
+  gap: 5px;
 }
 
-.controller-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.radar-icon {
-  font-size: 1.5rem;
-}
-
-.controller-info strong {
-  font-size: 0.85rem;
-  display: block;
+.target-card-header strong {
+  font-size: 0.72rem;
   color: var(--dark-navy);
 }
 
-.controller-info p {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin: 0;
+.target-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ba90;
+  animation: pulseGreen 1.3s infinite;
 }
+
+.dot-pink {
+  background: #ec4899;
+  box-shadow: 0 0 6px #ec4899;
+}
+
+.dot-orange {
+  background: #f97316;
+  box-shadow: 0 0 6px #f97316;
+}
+
+.target-speed {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  background: #e0f2fe;
+  padding: 1px 5px;
+  border-radius: var(--radius-pill);
+}
+
+.target-card-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.target-battery {
+  color: #059669;
+  font-weight: 700;
+}
+
+.target-pin-pointer {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid rgba(255, 255, 255, 0.96);
+  margin-bottom: 2px;
+}
+
+.pointer-pink {
+  border-top-color: #fbcfe8;
+}
+
+/* 3D Car Model Vector */
+.car-3d-model {
+  width: 50px;
+  height: 22px;
+  position: relative;
+  filter: drop-shadow(0 4px 6px rgba(14, 38, 77, 0.28));
+}
+
+.car-3d-model .car-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #0b74f4 0%, #00ba90 100%);
+  border-radius: 5px 9px 4px 4px;
+}
+
+.car-3d-model .car-roof {
+  position: absolute;
+  top: -7px;
+  left: 13px;
+  width: 22px;
+  height: 9px;
+  background: #1e293b;
+  border-radius: 5px 8px 0 0;
+}
+
+.car-3d-model .headlight-beam {
+  position: absolute;
+  right: -24px;
+  top: 4px;
+  width: 26px;
+  height: 12px;
+  background: linear-gradient(90deg, rgba(254, 240, 138, 0.85) 0%, transparent 100%);
+  clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%);
+}
+
+.car-3d-model .taillight-glow {
+  position: absolute;
+  left: -2px;
+  top: 4px;
+  width: 3px;
+  height: 5px;
+  background: #ef4444;
+  box-shadow: -2px 0 6px #ef4444;
+}
+
+.car-3d-model .car-wheel {
+  position: absolute;
+  bottom: -4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 2px solid #94a3b8;
+  animation: wheelSpin 0.5s linear infinite;
+}
+
+.car-3d-model .wheel-1 { left: 7px; }
+.car-3d-model .wheel-2 { right: 7px; }
+
+/* 3D Pedestrian Avatar (Priya) */
+.pedestrian-avatar-3d {
+  position: relative;
+  width: 18px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ped-radar-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid #ec4899;
+  animation: sonarRadar 2s infinite;
+}
+
+.avatar-head {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fcd34d;
+}
+
+.avatar-hoodie {
+  width: 12px;
+  height: 12px;
+  background: #ec4899;
+  border-radius: 3px;
+  margin-top: 1px;
+}
+
+.avatar-legs {
+  position: relative;
+  width: 10px;
+  height: 8px;
+}
+
+.avatar-legs .leg {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 1px;
+}
+
+.avatar-legs .leg-l {
+  left: 1px;
+  animation: pedLegSwingL 0.6s infinite alternate;
+}
+
+.avatar-legs .leg-r {
+  right: 1px;
+  animation: pedLegSwingR 0.6s infinite alternate;
+}
+
+/* 3D Courier Bike */
+.bike-3d-model {
+  width: 38px;
+  height: 24px;
+  position: relative;
+}
+
+.bike-rider {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+
+.bike-box {
+  position: absolute;
+  top: 4px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background: #ea580c;
+  border-radius: 2px;
+}
+
+.bike-wheel {
+  position: absolute;
+  bottom: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1e293b;
+  border: 1.5px solid #cbd5e1;
+}
+
+.bike-wheel.wheel-f { right: 2px; }
+.bike-wheel.wheel-r { left: 4px; }
+
 
 /* ==========================================================================
    Features Section
@@ -3905,17 +4039,34 @@ a {
     margin-top: 2px;
   }
 
-  .stage-3d-world {
-    height: 420px;
+  .stage-3d-world,
+  .map-full-dashboard {
+    height: 440px;
   }
 
-  .human-img {
-    height: 220px;
+  .map-hud-top-bar {
+    flex-wrap: wrap;
+    padding: 6px 10px;
+    gap: 6px;
   }
 
-  .phone-case {
-    width: 180px;
-    height: 320px;
+  .hud-stat-chip.chip-satellite {
+    display: none;
+  }
+
+  .hud-filter-group {
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 2px;
+  }
+
+  .map-hud-bottom-bar {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .telemetry-item:nth-child(2) {
+    display: none;
   }
 
   .features-grid, .usecases-grid, .phone-grid {
@@ -3937,11 +4088,6 @@ a {
 
   .hero-title {
     font-size: 2.75rem;
-  }
-
-  .human-motion-controller {
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .laptop-map-app {
@@ -3967,6 +4113,19 @@ a {
 }
 
 @media (max-width: 480px) {
+  .map-full-dashboard {
+    height: 380px;
+  }
+
+  .telemetry-item:nth-child(3) {
+    display: none;
+  }
+
+  #btnLiveSimToggle {
+    font-size: 0.70rem;
+    padding: 6px 10px;
+  }
+
   .wrap {
     padding-left: 10px;
     padding-right: 10px;

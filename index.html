@@ -114,20 +114,83 @@
           </div>
         </div>
 
-        <!-- Right Hero Visual: Real Standalone 3D Human Movement & Location Matcher Stage -->
+        <!-- Right Hero Visual: Full-Bleed 3D Live GPS City Tracking Command Map -->
         <div class="hero-visual-col">
-          <div class="stage-3d-world" id="stage3dWorld">
+          <div class="stage-3d-world map-full-dashboard" id="stage3dWorld">
             
-            <!-- Realistic 3D GPS Vector Map Environment -->
-            <div class="world-bg-scenery">
-              <!-- City Map Grid & Zones -->
-              <div class="city-map-grid">
-                <div class="map-zone green-zone" title="Cubbon Green Zone"></div>
-                <div class="map-zone blue-lake" title="Ulsoor Lake"></div>
+            <!-- Floating Top Glassmorphism HUD Bar -->
+            <div class="map-hud-top-bar">
+              <div class="hud-stat-chip">
+                <span class="live-signal-dot"></span>
+                <strong>3 Devices Active</strong>
+              </div>
+              <div class="hud-stat-chip chip-satellite">
+                <span>&#128752; 14 Satellites &bull; &plusmn;3m Accuracy</span>
+              </div>
+              <div class="hud-filter-group">
+                <button class="filter-pill active" data-target="all">All (3)</button>
+                <button class="filter-pill" data-target="car">&#128663; Rahul's Car</button>
+                <button class="filter-pill" data-target="priya">&#127890; Priya (Safe)</button>
+                <button class="filter-pill" data-target="bike">&#128757; Courier</button>
+              </div>
+            </div>
 
-                <!-- 3D City Houses & Buildings -->
+            <!-- Full-Bleed 3D Vector GPS City Map Environment -->
+            <div class="world-bg-scenery map-viewport" id="mapViewport">
+              
+              <!-- Vector City Map Canvas Grid -->
+              <div class="city-map-grid">
+                
+                <!-- Green Park & Lakes -->
+                <div class="map-zone green-zone" title="Cubbon City Park">
+                  <span class="zone-label">&#127795; Cubbon City Park</span>
+                  <div class="park-pond"></div>
+                </div>
+                <div class="map-zone blue-lake" title="Ulsoor Lake">
+                  <span class="zone-label">&#128674; Ulsoor Lake</span>
+                  <div class="lake-ripple"></div>
+                  <div class="lake-boat"></div>
+                </div>
+
+                <!-- Safe Geofence Zone Circle (School Geofence) -->
+                <div class="geofence-zone-circle" id="schoolGeofence" title="Safe School Geofence">
+                  <div class="geofence-radar-pulse"></div>
+                  <div class="geofence-boundary"></div>
+                  <span class="geofence-badge">&#128737;&#65039; Safe Geofence: School Zone</span>
+                </div>
+
+                <!-- 3D City Buildings & Architecture -->
                 <div class="map-city-buildings">
-                  <!-- Cottage Villa 1 (Parkside) -->
+                  <!-- City Center Tower (Commercial) -->
+                  <div class="map-building building-highrise pos-tower-1" title="Tech Park Tower">
+                    <div class="highrise-roof"><span class="beacon-light"></span></div>
+                    <div class="highrise-body">
+                      <div class="tower-glass-grid"></div>
+                    </div>
+                    <div class="building-shadow"></div>
+                  </div>
+
+                  <!-- School Building (Inside Geofence) -->
+                  <div class="map-building building-school pos-school" title="Green Valley High School">
+                    <div class="school-roof"></div>
+                    <div class="school-body">
+                      <span class="school-clock">&#128347;</span>
+                      <div class="school-windows"></div>
+                      <div class="school-door"></div>
+                    </div>
+                    <div class="building-shadow"></div>
+                  </div>
+
+                  <!-- Hospital with Cross -->
+                  <div class="map-building building-hospital pos-hospital" title="City Hospital">
+                    <div class="hospital-roof"><span class="red-cross">+</span></div>
+                    <div class="hospital-body">
+                      <div class="hospital-windows"></div>
+                    </div>
+                    <div class="building-shadow"></div>
+                  </div>
+
+                  <!-- Residential Cottages & Villas -->
                   <div class="map-building house-cottage pos-house-1" title="Greenwood Villa">
                     <div class="building-roof roof-red"></div>
                     <div class="building-body">
@@ -137,8 +200,7 @@
                     <div class="building-shadow"></div>
                   </div>
 
-                  <!-- Cottage Villa 2 (Top Left) -->
-                  <div class="map-building house-villa pos-house-2" title="Sunset Cottage">
+                  <div class="map-building house-villa pos-house-2" title="Sunset Villa">
                     <div class="building-roof roof-orange"></div>
                     <div class="building-body">
                       <div class="building-window"></div>
@@ -147,19 +209,7 @@
                     <div class="building-shadow"></div>
                   </div>
 
-                  <!-- Modern 3D Apartment Building (Center Right) -->
-                  <div class="map-building building-apt pos-apt-1" title="Metro Heights">
-                    <div class="apt-roof"></div>
-                    <div class="apt-body">
-                      <div class="apt-row"><span class="win win-glow"></span><span class="win"></span></div>
-                      <div class="apt-row"><span class="win"></span><span class="win win-glow"></span></div>
-                      <div class="apt-door"></div>
-                    </div>
-                    <div class="building-shadow"></div>
-                  </div>
-
-                  <!-- Lakeside House 3 (Right) -->
-                  <div class="map-building house-cottage pos-house-3" title="Lakeview Bungalow">
+                  <div class="map-building house-cottage pos-house-3" title="Lakeview Residence">
                     <div class="building-roof roof-teal"></div>
                     <div class="building-body">
                       <div class="building-window win-glow"></div>
@@ -168,354 +218,248 @@
                     <div class="building-shadow"></div>
                   </div>
 
-                  <!-- Corner Store / Cafe -->
-                  <div class="map-building house-shop pos-shop-1" title="City Store &amp; Cafe">
-                    <div class="shop-awning"></div>
-                    <div class="building-body shop-body">
-                      <div class="building-window win-glow"></div>
-                      <div class="building-door"></div>
+                  <!-- Metro Station -->
+                  <div class="map-building building-metro pos-metro" title="MG Road Metro Station">
+                    <div class="metro-canopy"></div>
+                    <div class="metro-track">
+                      <div class="metro-train"></div>
                     </div>
-                    <div class="building-shadow"></div>
                   </div>
                 </div>
 
-                <!-- City Trees & Lush Greenery -->
+                <!-- 3D Trees & Landscaping -->
                 <div class="map-city-trees">
-                  <div class="map-tree tree-1" style="top: 13%; left: 14%;" title="Park Oak Tree">
+                  <div class="map-tree tree-1" style="top: 14%; left: 16%;">
                     <div class="tree-canopy canopy-lush"></div>
                     <div class="tree-trunk"></div>
-                    <div class="tree-shadow"></div>
                   </div>
-                  <div class="map-tree tree-2" style="top: 20%; left: 7%;" title="Garden Tree">
+                  <div class="map-tree tree-2" style="top: 22%; left: 8%;">
                     <div class="tree-canopy canopy-bright"></div>
                     <div class="tree-trunk"></div>
-                    <div class="tree-shadow"></div>
                   </div>
-                  <div class="map-tree tree-3" style="top: 8%; left: 24%;" title="Pine Tree">
+                  <div class="map-tree tree-3" style="top: 8%; left: 28%;">
                     <div class="tree-canopy canopy-pine"></div>
                     <div class="tree-trunk"></div>
-                    <div class="tree-shadow"></div>
                   </div>
-                  <div class="map-tree tree-4" style="top: 26%; left: 44%;" title="Roadside Avenue Tree">
+                  <div class="map-tree tree-4" style="top: 48%; left: 12%;">
                     <div class="tree-canopy canopy-round"></div>
                     <div class="tree-trunk"></div>
-                    <div class="tree-shadow"></div>
                   </div>
-                  <div class="map-tree tree-5" style="top: 15%; right: 20%;" title="Lake Willow Tree">
+                  <div class="map-tree tree-5" style="top: 16%; right: 18%;">
                     <div class="tree-canopy canopy-lush"></div>
                     <div class="tree-trunk"></div>
-                    <div class="tree-shadow"></div>
                   </div>
-                  <div class="map-tree tree-6" style="top: 25%; right: 10%;" title="Palm Tree">
+                  <div class="map-tree tree-6" style="top: 38%; right: 8%;">
                     <div class="tree-canopy canopy-round"></div>
                     <div class="tree-trunk"></div>
-                    <div class="tree-shadow"></div>
+                  </div>
+                  <div class="map-tree tree-7" style="top: 68%; right: 26%;">
+                    <div class="tree-canopy canopy-bright"></div>
+                    <div class="tree-trunk"></div>
                   </div>
                 </div>
 
-                <!-- Streets with Lane Dashes -->
+                <!-- City Street Network -->
+                <!-- Horizontal Street 1: MG Road (Main Highway with Zebra Crossings) -->
                 <div class="map-street street-h1">
                   <div class="street-lane-dash"></div>
+                  <div class="crosswalk crosswalk-left"></div>
+                  <div class="crosswalk crosswalk-right"></div>
                 </div>
+
+                <!-- Horizontal Street 2: Residency Road -->
                 <div class="map-street street-h2">
                   <div class="street-lane-dash"></div>
+                  <div class="crosswalk crosswalk-center"></div>
                 </div>
-                <div class="map-street street-v1"></div>
-                <div class="map-street street-v2"></div>
-                
-                <!-- Live Animated GPS Polyline Layer with glowing trail -->
+
+                <!-- Horizontal Street 3: South Boulevard -->
+                <div class="map-street street-h3">
+                  <div class="street-lane-dash"></div>
+                </div>
+
+                <!-- Vertical Street 1: Brigade Road -->
+                <div class="map-street street-v1">
+                  <div class="street-lane-dash-v"></div>
+                </div>
+
+                <!-- Vertical Street 2: Trinity Avenue -->
+                <div class="map-street street-v2">
+                  <div class="street-lane-dash-v"></div>
+                </div>
+
+                <!-- Traffic Light Signals -->
+                <div class="traffic-light signal-1" style="top: 26%; left: 32%;">
+                  <span class="light red"></span>
+                  <span class="light yellow"></span>
+                  <span class="light green active"></span>
+                </div>
+                <div class="traffic-light signal-2" style="top: 48%; right: 30%;">
+                  <span class="light red active"></span>
+                  <span class="light yellow"></span>
+                  <span class="light green"></span>
+                </div>
+
+                <!-- Street Name Badges -->
+                <span class="street-label label-mg">MG Road &bull; Arterial</span>
+                <span class="street-label label-trinity">Trinity Circle</span>
+                <span class="street-label label-brigade">Brigade Rd</span>
+                <span class="street-label label-metro">Metro Station &#128647;</span>
+                <span class="street-label label-school">School Rd</span>
+
+                <!-- Animated GPS Polyline Trails (Car Route & Child Route) -->
                 <svg class="map-polyline-svg" viewBox="0 0 1000 500" preserveAspectRatio="none">
                   <defs>
-                    <linearGradient id="liveGpsPolylineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id="carRouteGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stop-color="#00ba90" stop-opacity="0.2"/>
-                      <stop offset="40%" stop-color="#00ba90" stop-opacity="0.9"/>
-                      <stop offset="85%" stop-color="#0b74f4" stop-opacity="1"/>
-                      <stop offset="100%" stop-color="#00e5a3" stop-opacity="1"/>
+                      <stop offset="50%" stop-color="#00ba90" stop-opacity="0.9"/>
+                      <stop offset="100%" stop-color="#0b74f4" stop-opacity="1"/>
                     </linearGradient>
-                    <filter id="polylineGlow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feGaussianBlur stdDeviation="3.5" result="glowBlur" />
+                    <linearGradient id="pedRouteGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.2"/>
+                      <stop offset="100%" stop-color="#ec4899" stop-opacity="1"/>
+                    </linearGradient>
+                    <filter id="routeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3.5" result="glow" />
                       <feMerge>
-                        <feMergeNode in="glowBlur" />
+                        <feMergeNode in="glow" />
                         <feMergeNode in="SourceGraphic" />
                       </feMerge>
                     </filter>
                   </defs>
-                  
-                  <!-- Glowing Polyline Route following the streets -->
-                  <path class="active-gps-polyline" d="M -50,160 L 300,160 L 300,275 L 720,275 L 720,160 L 1050,160" fill="none" stroke="url(#liveGpsPolylineGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#polylineGlow)"/>
-                  
-                  <!-- Pulsing Dotted Laser on Top of Polyline -->
-                  <path class="active-gps-pulse-line" d="M -50,160 L 300,160 L 300,275 L 720,275 L 720,160 L 1050,160" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-dasharray="10, 14" stroke-linecap="round" stroke-linejoin="round"/>
-                  
-                  <!-- Waypoint GPS Nodes on the Map -->
-                  <circle cx="300" cy="160" r="5" fill="#00ba90" stroke="#ffffff" stroke-width="2"/>
-                  <circle cx="300" cy="275" r="5" fill="#0b74f4" stroke="#ffffff" stroke-width="2"/>
-                  <circle cx="720" cy="275" r="5" fill="#00ba90" stroke="#ffffff" stroke-width="2"/>
-                  <circle cx="720" cy="160" r="5" fill="#0b74f4" stroke="#ffffff" stroke-width="2"/>
+
+                  <!-- Vehicle Route Polyline -->
+                  <path class="active-gps-polyline car-polyline" d="M -50,160 L 320,160 L 320,310 L 710,310 L 710,160 L 1050,160" fill="none" stroke="url(#carRouteGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#routeGlow)"/>
+                  <path class="active-gps-pulse-line" d="M -50,160 L 320,160 L 320,310 L 710,310 L 710,160 L 1050,160" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="10, 14" stroke-linecap="round" stroke-linejoin="round"/>
+
+                  <!-- Priya Pedestrian Route Polyline (School to Home) -->
+                  <path class="active-gps-polyline ped-polyline" d="M 680,80 L 680,220 L 520,220" fill="none" stroke="url(#pedRouteGrad)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="6, 8" filter="url(#routeGlow)"/>
+
+                  <!-- Start & Destination Pin Markers -->
+                  <g class="map-pin-start" transform="translate(320, 160)">
+                    <circle r="7" fill="#00ba90" stroke="#ffffff" stroke-width="2.5"/>
+                    <circle r="14" fill="#00ba90" opacity="0.3" class="sonar-ring"/>
+                  </g>
+                  <g class="map-pin-dest" transform="translate(710, 160)">
+                    <circle r="7" fill="#0b74f4" stroke="#ffffff" stroke-width="2.5"/>
+                    <circle r="14" fill="#0b74f4" opacity="0.3" class="sonar-ring"/>
+                  </g>
                 </svg>
 
-                <!-- Moving Traffic on the Roads (Car & Scooter) -->
-                <div class="map-moving-traffic">
-                  <!-- Smart Car Driving along Street H1 -->
-                  <div class="moving-vehicle vehicle-car" id="streetCar" title="Live Tracked Car">
-                    <div class="vehicle-gps-tag">
-                      <span class="live-blink-dot"></span>
-                      <span>Cab &bull; 42 km/h</span>
-                    </div>
-                    <div class="car-chassis">
-                      <div class="car-cabin">
-                        <div class="car-windshield"></div>
-                        <div class="car-window-side"></div>
+                <!-- LIVE MOVING TARGETS -->
+                <div class="map-live-targets">
+                  
+                  <!-- Target 1: Rahul's Car (Sedan) -->
+                  <div class="live-target target-car" id="targetCar" title="Rahul's Car &bull; Live GPS Active">
+                    <div class="target-card">
+                      <div class="target-card-header">
+                        <span class="target-live-dot"></span>
+                        <strong>Rahul (Car)</strong>
+                        <span class="target-speed">42 km/h</span>
                       </div>
-                      <div class="car-body-lower">
+                      <div class="target-card-sub">
+                        <span>Indiranagar &rarr; MG Rd</span>
+                        <span class="target-battery">&#128267; 94%</span>
+                      </div>
+                    </div>
+                    <div class="target-pin-pointer"></div>
+                    <div class="car-3d-model">
+                      <div class="car-body">
+                        <div class="car-roof"></div>
                         <div class="headlight-beam"></div>
-                        <div class="car-taillight"></div>
-                        <div class="car-wheel wheel-front"></div>
-                        <div class="car-wheel wheel-back"></div>
+                        <div class="taillight-glow"></div>
+                        <div class="car-wheel wheel-1"></div>
+                        <div class="car-wheel wheel-2"></div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Delivery Scooter on Street H2 -->
-                  <div class="moving-vehicle vehicle-scooter" id="streetScooter" title="Live Courier">
-                    <div class="scooter-rider">
-                      <div class="scooter-helmet"></div>
-                      <div class="scooter-body"></div>
-                      <div class="scooter-box"></div>
-                      <div class="scooter-wheel wheel-f"></div>
-                      <div class="scooter-wheel wheel-b"></div>
+                  <!-- Target 2: Priya (Child Walking in Geofence) -->
+                  <div class="live-target target-priya" id="targetPriya" title="Priya &bull; Safe in School Geofence">
+                    <div class="target-card card-priya">
+                      <div class="target-card-header">
+                        <span class="target-live-dot dot-pink"></span>
+                        <strong>Priya (Walking)</strong>
+                        <span class="target-speed">4 km/h</span>
+                      </div>
+                      <div class="target-card-sub">
+                        <span>&#128737;&#65039; Inside Safe Geofence</span>
+                        <span class="target-battery">&#128267; 88%</span>
+                      </div>
+                    </div>
+                    <div class="target-pin-pointer pointer-pink"></div>
+                    <div class="pedestrian-avatar-3d">
+                      <div class="ped-radar-ring"></div>
+                      <div class="avatar-head"></div>
+                      <div class="avatar-hoodie"></div>
+                      <div class="avatar-legs">
+                        <span class="leg leg-l"></span>
+                        <span class="leg leg-r"></span>
+                      </div>
                     </div>
                   </div>
+
+                  <!-- Target 3: Courier Delivery Bike -->
+                  <div class="live-target target-bike" id="targetBike" title="Delivery Courier">
+                    <div class="target-card card-bike">
+                      <div class="target-card-header">
+                        <span class="target-live-dot dot-orange"></span>
+                        <strong>Delivery Partner</strong>
+                        <span class="target-speed">28 km/h</span>
+                      </div>
+                    </div>
+                    <div class="bike-3d-model">
+                      <div class="bike-rider"></div>
+                      <div class="bike-box"></div>
+                      <div class="bike-wheel wheel-f"></div>
+                      <div class="bike-wheel wheel-r"></div>
+                    </div>
+                  </div>
+
                 </div>
 
-                <!-- Pedestrians (Humans) Moving Around in Scenery -->
-                <div class="map-moving-pedestrians">
-                  <!-- Pedestrian 1: Walking along Brigade Road -->
-                  <div class="map-pedestrian pedestrian-1" title="Pedestrian Tracked">
-                    <div class="ped-radar-dot"></div>
-                    <div class="ped-avatar">
-                      <div class="ped-head"></div>
-                      <div class="ped-torso"></div>
-                      <div class="ped-legs">
-                        <span class="ped-leg ped-leg-l"></span>
-                        <span class="ped-leg ped-leg-r"></span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Pedestrian 2: Jogger in Cubbon Park -->
-                  <div class="map-pedestrian pedestrian-2" title="Park Jogger">
-                    <div class="ped-radar-dot dot-cyan"></div>
-                    <div class="ped-avatar ped-jogger">
-                      <div class="ped-head"></div>
-                      <div class="ped-torso"></div>
-                      <div class="ped-legs">
-                        <span class="ped-leg ped-leg-l"></span>
-                        <span class="ped-leg ped-leg-r"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Street Landmarks -->
-                <span class="street-label label-mg">MG Road</span>
-                <span class="street-label label-trinity">Trinity Circle</span>
-                <span class="street-label label-brigade">Brigade Rd</span>
-                <span class="street-label label-metro">Metro Station &#128647;</span>
               </div>
 
-              <!-- 360° Rotating Radar Scanner Beam (Searching Location) -->
-              <div class="radar-scanner-center">
-                <div class="radar-sweep-beam"></div>
-                <div class="radar-scan-ring ring-1"></div>
-                <div class="radar-scan-ring ring-2"></div>
-                <div class="radar-scan-ring ring-3"></div>
-              </div>
-
-              <!-- Orbiting GPS Satellite -->
+              <!-- Orbiting GPS Satellite with dual scanning laser beams -->
               <div class="satellite-orbit">
                 <span class="satellite-icon">&#128752;</span>
                 <div class="satellite-beam beam-left"></div>
                 <div class="satellite-beam beam-right"></div>
               </div>
 
-              <!-- Asphalt Walking Highway -->
-              <div class="world-walking-highway">
-                <div class="highway-lane-dashes"></div>
-              </div>
-
-              <!-- Floating Map Pins -->
-              <span class="floating-pin pin-left" title="Rahul's Start Location">&#128205;</span>
-              <span class="floating-pin pin-right" title="Priya's Start Location">&#128205;</span>
             </div>
 
-            <!-- 3D Boy Character (Left) - Rahul -->
-            <div class="human-actor boy-actor" id="boyActor">
-              <div class="avatar-tag boy-tag">
-                <span class="online-dot"></span>
-                <span>Rahul (Host)</span>
-              </div>
-              
-              <div class="skeletal-body boy-body" id="boySkeletal">
-                <!-- Torso (Head, Phone, Arms, Backpack, Upper Body) -->
-                <div class="sk-limb sk-torso boy-torso">
-                  <img src="assets/boy_torso.png?v=2" alt="Rahul 3D Torso" class="sk-img">
-                  <!-- Sonar Pulse from Handheld Phone -->
-                  <div class="phone-radar radar-boy">
-                    <span class="radar-wave"></span>
-                    <span class="radar-wave wave-2"></span>
-                  </div>
-                </div>
-
-                <!-- Left Leg with Running Sneaker -->
-                <div class="sk-limb sk-leg boy-leg-left">
-                  <img src="assets/boy_leg_l.png?v=2" alt="Rahul Left Leg" class="sk-img">
-                </div>
-
-                <!-- Right Leg with Running Sneaker -->
-                <div class="sk-limb sk-leg boy-leg-right">
-                  <img src="assets/boy_leg_r.png?v=2" alt="Rahul Right Leg" class="sk-img">
+            <!-- Floating Bottom Command Telemetry Bar -->
+            <div class="map-hud-bottom-bar">
+              <div class="telemetry-item">
+                <span class="tel-icon">&#128205;</span>
+                <div>
+                  <small>Current Location</small>
+                  <strong>MG Road, Bangalore Central</strong>
                 </div>
               </div>
-
-              <!-- Realistic Dual Footstep Ground Shadows -->
-              <div class="dual-foot-shadows">
-                <div class="foot-shadow foot-shadow-l boy-shadow-l"></div>
-                <div class="foot-shadow foot-shadow-r boy-shadow-r"></div>
-              </div>
-              <!-- Footstep Impact Pulse on Road -->
-              <div class="footstep-ripple boy-step"></div>
-            </div>
-
-            <!-- Central 3D Smartphone Display -->
-            <div class="phone-3d-center" id="centerPhone">
-              <div class="phone-case">
-                <div class="phone-top-bar">
-                  <span>9:41</span>
-                  <div class="phone-speaker"></div>
-                  <span>&#9679;&#9679;&#9679; &#9646;</span>
-                </div>
-                
-                <div class="phone-map-view">
-                  <!-- Vector Map Roads & Route -->
-                  <div class="map-grid-roads"></div>
-                  <svg class="map-route-svg" viewBox="0 0 240 320" preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id="laserGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#0b74f4"/>
-                        <stop offset="50%" stop-color="#00e5a3"/>
-                        <stop offset="100%" stop-color="#0b74f4"/>
-                      </linearGradient>
-                    </defs>
-                    <path id="svgMapRoute" d="M 40 270 Q 70 210, 120 180 T 200 60" fill="none" stroke="url(#laserGrad)" stroke-width="6" stroke-linecap="round"/>
-                    
-                    <!-- Pulsing GPS Marker at Boy's location -->
-                    <circle cx="40" cy="270" r="8" fill="#00ba90" stroke="#ffffff" stroke-width="3"/>
-                    <!-- Pulsing GPS Marker at Girl's location -->
-                    <circle cx="200" cy="60" r="8" fill="#0b74f4" stroke="#ffffff" stroke-width="3"/>
-                    
-                    <!-- Moving Signal Beacon -->
-                    <circle id="movingSignalDot" r="6" fill="#00e5a3" stroke="#ffffff" stroke-width="2">
-                      <animateMotion dur="3.5s" repeatCount="indefinite" path="M 40 270 Q 70 210, 120 180 T 200 60" />
-                    </circle>
-                  </svg>
-                </div>
-
-                <!-- Floating Telemetry Overlay inside Phone -->
-                <div class="phone-hud" id="phoneHud">
-                  <div class="hud-top">
-                    <span class="hud-status">
-                      <span class="green-dot"></span> Live Tracking
-                    </span>
-                    <span class="hud-badge" id="hudState">Active</span>
-                  </div>
-                  <div class="hud-meta">
-                    <div>
-                      <small>Last Updated</small>
-                      <b id="hudUpdated">Just now</b>
-                    </div>
-                    <div>
-                      <small>Accuracy</small>
-                      <b>&plusmn; 5 meters</b>
-                    </div>
-                  </div>
-                  <div class="hud-distance">
-                    <div class="dist-row">
-                      <span>Distance:</span>
-                      <b id="liveDistText">850m</b>
-                    </div>
-                    <div class="dist-progress-track">
-                      <div class="dist-progress-bar" id="liveProgressBar"></div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- 3D Girl Character (Right) - Priya -->
-            <div class="human-actor girl-actor" id="girlActor">
-              <div class="avatar-tag girl-tag">
-                <span class="online-dot"></span>
-                <span>Priya (Connected)</span>
-              </div>
-              
-              <div class="skeletal-body girl-body" id="girlSkeletal">
-                <!-- Torso (Head, Phone, Pink Hoodie, Waving Hand, Upper Body) -->
-                <div class="sk-limb sk-torso girl-torso">
-                  <img src="assets/girl_torso.png?v=2" alt="Priya 3D Torso" class="sk-img">
-                  <!-- Sonar Pulse from Handheld Phone -->
-                  <div class="phone-radar radar-girl">
-                    <span class="radar-wave"></span>
-                    <span class="radar-wave wave-2"></span>
-                  </div>
-                </div>
-
-                <!-- Left Leg with Pink Sneaker -->
-                <div class="sk-limb sk-leg girl-leg-left">
-                  <img src="assets/girl_leg_l.png?v=2" alt="Priya Left Leg" class="sk-img">
-                </div>
-
-                <!-- Right Leg with Pink Sneaker -->
-                <div class="sk-limb sk-leg girl-leg-right">
-                  <img src="assets/girl_leg_r.png?v=2" alt="Priya Right Leg" class="sk-img">
+              <div class="telemetry-item">
+                <span class="tel-icon">&#9889;</span>
+                <div>
+                  <small>Battery Optimization</small>
+                  <strong style="color: #00ba90;">0% Extra Battery Drain</strong>
                 </div>
               </div>
-
-              <!-- Realistic Dual Footstep Ground Shadows -->
-              <div class="dual-foot-shadows">
-                <div class="foot-shadow foot-shadow-l girl-shadow-l"></div>
-                <div class="foot-shadow foot-shadow-r girl-shadow-r"></div>
+              <div class="telemetry-item">
+                <span class="tel-icon">&#128737;&#65039;</span>
+                <div>
+                  <small>Privacy Status</small>
+                  <strong style="color: #0b74f4;">100% Sovereign (No Leaks)</strong>
+                </div>
               </div>
-              <!-- Footstep Impact Pulse on Road -->
-              <div class="footstep-ripple girl-step"></div>
-            </div>
-
-            <!-- Location Matched Celebration Popup -->
-            <div class="match-popup-banner" id="matchPopupBanner">
-              <span class="celebration-emoji">&#127881;</span>
-              <div>
-                <strong>Location Matched! Connected!</strong>
-                <small>Live GPS synced: Rahul and Priya are 0m away</small>
+              <div class="hud-action-controls">
+                <button class="btn btn-sm btn-primary" id="btnLiveSimToggle">
+                  &#9679; Live Tracking Active
+                </button>
               </div>
             </div>
 
           </div>
-
-          <!-- Interactive 3D Walk Controller -->
-          <div class="human-motion-controller">
-            <div class="controller-info">
-              <span class="radar-icon">&#128225;</span>
-              <div>
-                <strong>Live 3D Movement Simulator</strong>
-                <p id="motionStatusText">Both 3D avatars are tracking live location via GPS.</p>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-primary" id="triggerMeetupBtn">
-              &#9654; Walk &amp; Connect Location
-            </button>
-          </div>
-
         </div>
 
       </div>
@@ -1315,7 +1259,7 @@
             <form 
               id="raahMiloContactForm" 
               class="contact-form" 
-              action="https://formsubmit.co/skdas1641999@gmail.com" 
+              action="https://formsubmit.co/support@raahmilo.com" 
               method="POST"
             >
               <!-- FormSubmit Required Hidden Configs -->
