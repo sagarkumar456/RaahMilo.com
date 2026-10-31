@@ -495,6 +495,17 @@ a {
   box-shadow: 0 1px 3px rgba(14, 38, 77, 0.05);
 }
 
+.street-lane-dash {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, #b0cbe3 0 16px, transparent 16px 30px);
+  transform: translateY(-50%);
+  opacity: 0.75;
+}
+
 .street-h1 {
   top: 32%;
   left: 0;
@@ -529,6 +540,691 @@ a {
   width: 20px;
   border-left: 1px solid #d5e5f2;
   border-right: 1px solid #d5e5f2;
+}
+
+/* ==========================================================================
+   3D City Houses, Villas & Apartment Buildings
+   ========================================================================== */
+.map-city-buildings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.map-building {
+  position: absolute;
+  filter: drop-shadow(0 5px 10px rgba(14, 38, 77, 0.15));
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.map-building:hover {
+  transform: scale(1.08) translateY(-2px);
+}
+
+.house-cottage {
+  width: 44px;
+  height: 38px;
+}
+
+.pos-house-1 {
+  top: 7%;
+  left: 9%;
+}
+
+.pos-house-2 {
+  top: 19%;
+  left: 23%;
+}
+
+.pos-house-3 {
+  top: 21%;
+  right: 6%;
+}
+
+.pos-shop-1 {
+  top: 41%;
+  left: 15%;
+}
+
+.pos-apt-1 {
+  top: 5%;
+  right: 28%;
+}
+
+.building-roof {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-bottom: 15px solid #ef4444;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.12));
+}
+
+.roof-red {
+  border-bottom-color: #ef4444;
+}
+
+.roof-orange {
+  border-bottom-color: #f97316;
+}
+
+.roof-teal {
+  border-bottom-color: #00ba90;
+}
+
+.building-body {
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 23px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+  border: 1px solid #cbd5e1;
+  border-radius: 2px 2px 4px 4px;
+  box-shadow: inset -4px 0 0 rgba(148, 163, 184, 0.35);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 3px;
+}
+
+.building-window {
+  width: 9px;
+  height: 9px;
+  background: #bae6fd;
+  border: 1px solid #7dd3fc;
+  border-radius: 1px;
+  margin-bottom: 6px;
+}
+
+.building-window.win-glow {
+  background: #fef08a;
+  border-color: #fde047;
+  box-shadow: 0 0 6px rgba(254, 240, 138, 0.9);
+}
+
+.building-door {
+  width: 8px;
+  height: 12px;
+  background: #854d0e;
+  border-radius: 2px 2px 0 0;
+}
+
+/* 3D Multi-story Apartment Building */
+.building-apt {
+  width: 48px;
+  height: 60px;
+}
+
+.apt-roof {
+  height: 6px;
+  background: #475569;
+  border-radius: 3px 3px 0 0;
+  box-shadow: inset 0 2px 0 #94a3b8;
+  position: relative;
+}
+
+.apt-roof::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 8px;
+  background: #dc2626;
+  box-shadow: 0 0 4px #ef4444;
+}
+
+.apt-body {
+  height: 54px;
+  background: linear-gradient(90deg, #f8fafc 0%, #e2e8f0 70%, #cbd5e1 100%);
+  border: 1px solid #94a3b8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 3px 4px;
+}
+
+.apt-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.apt-row .win {
+  width: 7px;
+  height: 7px;
+  background: #bae6fd;
+  border-radius: 1px;
+}
+
+.apt-row .win.win-glow {
+  background: #fef08a;
+  box-shadow: 0 0 5px rgba(254, 240, 138, 0.9);
+}
+
+.apt-door {
+  width: 10px;
+  height: 10px;
+  background: #1e293b;
+  margin: 0 auto;
+  border-radius: 2px 2px 0 0;
+}
+
+/* Shop with Striped Awning */
+.shop-awning {
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #00ba90 0 7px, #ffffff 7px 14px);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.shop-body {
+  height: 22px;
+}
+
+/* ==========================================================================
+   3D Trees & Greenery
+   ========================================================================== */
+.map-city-trees {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.map-tree {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 4px 6px rgba(14, 38, 77, 0.18));
+}
+
+.tree-canopy {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  animation: treeBreeze 4s ease-in-out infinite alternate;
+}
+
+.canopy-lush {
+  background: radial-gradient(circle at 35% 35%, #4ade80 0%, #16a34a 70%, #15803d 100%);
+}
+
+.canopy-bright {
+  background: radial-gradient(circle at 35% 35%, #86efac 0%, #22c55e 70%, #16a34a 100%);
+}
+
+.canopy-round {
+  background: radial-gradient(circle at 35% 35%, #34d399 0%, #059669 70%, #047857 100%);
+}
+
+.canopy-pine {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 24px solid #15803d;
+  border-radius: 4px;
+}
+
+.tree-trunk {
+  width: 4px;
+  height: 8px;
+  background: #78350f;
+  border-radius: 0 0 2px 2px;
+}
+
+.tree-shadow {
+  width: 20px;
+  height: 5px;
+  background: rgba(14, 38, 77, 0.18);
+  border-radius: 50%;
+  margin-top: -2px;
+}
+
+@keyframes treeBreeze {
+  0% { transform: rotate(0deg) skewX(0deg); }
+  50% { transform: rotate(2.5deg) skewX(1deg); }
+  100% { transform: rotate(-2.5deg) skewX(-1deg); }
+}
+
+/* ==========================================================================
+   Live GPS Polyline Layer (SVG Trail)
+   ========================================================================== */
+.map-polyline-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.active-gps-polyline {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: drawGpsRoute 10s ease-in-out infinite;
+}
+
+.active-gps-pulse-line {
+  animation: polylinePulseDash 1.2s linear infinite;
+}
+
+@keyframes drawGpsRoute {
+  0% { stroke-dashoffset: 1200; opacity: 0.4; }
+  30% { stroke-dashoffset: 0; opacity: 1; }
+  85% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: -1200; opacity: 0.4; }
+}
+
+@keyframes polylinePulseDash {
+  to { stroke-dashoffset: -24; }
+}
+
+/* ==========================================================================
+   Moving Traffic on Roads (Car & Delivery Scooter)
+   ========================================================================== */
+.map-moving-traffic {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.moving-vehicle {
+  position: absolute;
+}
+
+/* Smart Electric Car on Street H1 */
+.vehicle-car {
+  top: calc(32% - 11px);
+  width: 54px;
+  height: 24px;
+  animation: driveCarAcross 14s cubic-bezier(0.25, 0.8, 0.35, 1) infinite;
+}
+
+@keyframes driveCarAcross {
+  0% {
+    left: -70px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  42% {
+    left: 45%;
+    transform: scaleX(1);
+  }
+  48% {
+    left: 48%;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: 104%;
+    opacity: 0;
+  }
+}
+
+.vehicle-gps-tag {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(14, 38, 77, 0.92);
+  color: #ffffff;
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+  font-size: 0.58rem;
+  font-weight: 800;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.live-blink-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #00e5a3;
+  animation: pulseGreen 1.2s infinite;
+}
+
+.car-chassis {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 6px rgba(14, 38, 77, 0.25));
+  animation: carBounce 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes carBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1.2px); }
+}
+
+.car-cabin {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  width: 24px;
+  height: 11px;
+  background: #1e293b;
+  border-radius: 6px 10px 0 0;
+  overflow: hidden;
+}
+
+.car-windshield {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, #38bdf8 100%);
+  transform: skewX(-15deg);
+}
+
+.car-window-side {
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  width: 9px;
+  height: 8px;
+  background: #0284c7;
+  border-radius: 2px;
+}
+
+.car-body-lower {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 13px;
+  background: linear-gradient(90deg, #0b74f4 0%, #00ba90 100%);
+  border-radius: 4px 8px 4px 4px;
+}
+
+.headlight-beam {
+  position: absolute;
+  right: -24px;
+  top: 2px;
+  width: 26px;
+  height: 12px;
+  background: linear-gradient(90deg, rgba(254, 240, 138, 0.8) 0%, transparent 100%);
+  clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%);
+  pointer-events: none;
+}
+
+.car-taillight {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 3px;
+  height: 5px;
+  background: #ef4444;
+  box-shadow: -2px 0 6px #ef4444;
+}
+
+.car-wheel {
+  position: absolute;
+  bottom: -4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 2px solid #94a3b8;
+  animation: wheelSpin 0.5s linear infinite;
+}
+
+.wheel-front {
+  right: 7px;
+}
+
+.wheel-back {
+  left: 7px;
+}
+
+@keyframes wheelSpin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Delivery Scooter on Street H2 */
+.vehicle-scooter {
+  top: calc(55% - 8px);
+  width: 32px;
+  height: 22px;
+  animation: driveScooterAcross 11s linear infinite;
+}
+
+@keyframes driveScooterAcross {
+  0% {
+    right: -50px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    right: 105%;
+    opacity: 0;
+  }
+}
+
+.scooter-rider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+}
+
+.scooter-helmet {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+
+.scooter-body {
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  width: 22px;
+  height: 8px;
+  background: #dc2626;
+  border-radius: 4px;
+}
+
+.scooter-box {
+  position: absolute;
+  top: 4px;
+  left: 2px;
+  width: 9px;
+  height: 9px;
+  background: #facc15;
+  border-radius: 2px;
+}
+
+.scooter-wheel {
+  position: absolute;
+  bottom: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1e293b;
+  border: 1.5px solid #cbd5e1;
+}
+
+.wheel-f {
+  right: 2px;
+}
+
+.wheel-b {
+  left: 2px;
+}
+
+/* ==========================================================================
+   Pedestrians (Humans) Moving Around
+   ========================================================================== */
+.map-moving-pedestrians {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.map-pedestrian {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Pedestrian 1: Walking along Brigade Road */
+.pedestrian-1 {
+  top: 46%;
+  animation: walkPedestrian1 20s linear infinite;
+}
+
+@keyframes walkPedestrian1 {
+  0% {
+    left: -30px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: 105%;
+    opacity: 0;
+  }
+}
+
+/* Pedestrian 2: Jogger in Cubbon Park */
+.pedestrian-2 {
+  top: 17%;
+  animation: jogInPark 14s ease-in-out infinite alternate;
+}
+
+@keyframes jogInPark {
+  0% {
+    left: 7%;
+    transform: scaleX(1);
+  }
+  48% {
+    left: 23%;
+    transform: scaleX(1);
+  }
+  50% {
+    left: 23%;
+    transform: scaleX(-1);
+  }
+  98% {
+    left: 7%;
+    transform: scaleX(-1);
+  }
+  100% {
+    left: 7%;
+    transform: scaleX(1);
+  }
+}
+
+.ped-radar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ba90;
+  box-shadow: 0 0 6px rgba(0, 186, 144, 0.8);
+  margin-bottom: 2px;
+  animation: pulseGreen 1.4s infinite;
+}
+
+.ped-radar-dot.dot-cyan {
+  background: #0b74f4;
+  box-shadow: 0 0 6px rgba(11, 116, 244, 0.8);
+}
+
+.ped-avatar {
+  position: relative;
+  width: 14px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ped-head {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fcd34d;
+}
+
+.ped-torso {
+  width: 8px;
+  height: 10px;
+  background: #0284c7;
+  border-radius: 3px;
+  margin-top: 1px;
+}
+
+.ped-jogger .ped-torso {
+  background: #ec4899;
+}
+
+.ped-legs {
+  position: relative;
+  width: 8px;
+  height: 8px;
+}
+
+.ped-leg {
+  position: absolute;
+  top: 0;
+  width: 2.5px;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 1px;
+  transform-origin: top center;
+}
+
+.ped-leg-l {
+  left: 1px;
+  animation: pedLegSwingL 0.6s ease-in-out infinite alternate;
+}
+
+.ped-leg-r {
+  right: 1px;
+  animation: pedLegSwingR 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes pedLegSwingL {
+  0% { transform: rotate(26deg); }
+  100% { transform: rotate(-26deg); }
+}
+
+@keyframes pedLegSwingR {
+  0% { transform: rotate(-26deg); }
+  100% { transform: rotate(26deg); }
 }
 
 /* Street Name Badges */
@@ -900,23 +1596,25 @@ a {
 /* Sonar Radar Waves from Handheld Phone */
 .phone-radar {
   position: absolute;
-  top: 50%;
-  width: 44px;
-  height: 44px;
+  width: 28px;
+  height: 28px;
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 
 .radar-boy {
-  right: 22%;
-  top: 48%;
+  left: 18%;
+  top: 66%;
+  right: auto;
 }
 
 .radar-girl {
-  left: 20%;
-  top: 48%;
+  right: 8%;
+  top: 60%;
+  left: auto;
 }
 
 .radar-wave {
@@ -924,20 +1622,20 @@ a {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 2.5px solid #00ba90;
-  box-shadow: 0 0 12px rgba(0, 186, 144, 0.4);
-  animation: sonarRadar 2s cubic-bezier(0.1, 0.5, 0.7, 1) infinite;
+  border: 1.5px solid rgba(0, 186, 144, 0.65);
+  box-shadow: 0 0 8px rgba(0, 186, 144, 0.35);
+  animation: sonarRadar 2.2s cubic-bezier(0.1, 0.5, 0.7, 1) infinite;
 }
 
 .radar-wave.wave-2 {
-  animation-delay: 1s;
-  border-color: #0b74f4;
-  box-shadow: 0 0 12px rgba(11, 116, 244, 0.4);
+  animation-delay: 1.1s;
+  border-color: rgba(11, 116, 244, 0.65);
+  box-shadow: 0 0 8px rgba(11, 116, 244, 0.35);
 }
 
 @keyframes sonarRadar {
-  0% { transform: scale(0.4); opacity: 1; }
-  100% { transform: scale(3.2); opacity: 0; }
+  0% { transform: scale(0.3); opacity: 0.85; }
+  100% { transform: scale(1.8); opacity: 0; }
 }
 
 /* Central 3D Smartphone */
@@ -3253,6 +3951,19 @@ a {
   .laptop-sidebar {
     display: none;
   }
+
+  .map-building {
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
+
+  .map-tree {
+    transform: scale(0.85);
+  }
+
+  .vehicle-car {
+    transform: scale(0.85);
+  }
 }
 
 @media (max-width: 480px) {
@@ -3267,5 +3978,13 @@ a {
 
   .compare-card {
     padding: 16px 8px;
+  }
+
+  .map-building {
+    transform: scale(0.7);
+  }
+
+  .map-tree {
+    transform: scale(0.75);
   }
 }
