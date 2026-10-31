@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaahMilo | Track What Matters, Live</title>
+  <meta name="description" content="RaahMilo — Live GPS location sharing, route history, family safety, and accurate tracking — all from your phone.">
+  <link rel="icon" type="image/png" href="assets/logo_app_icon.png">
+  
+  <!-- Google Fonts: Outfit & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="#home" class="brand" aria-label="RaahMilo Home">
+        <img src="assets/logo_main.png" alt="RaahMilo Logo" class="brand-logo" width="160" height="auto">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#tracking" class="nav-link">Live Tracking</a>
+        <a href="#how" class="nav-link">How It Works</a>
+        <a href="#pricing" class="nav-link">Pricing &amp; Compare</a>
+        <a href="#usecases" class="nav-link">Use Cases</a>
+        <a href="#support" class="nav-link">Contact &amp; Support</a>
+      </nav>
+
+      <!-- Right Action -->
+      <div class="header-actions">
+        <a href="#pricing" class="btn btn-primary nav-cta">Start 1 Month Free Trial &rarr;</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Open Navigation Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#features" class="mobile-link">Features</a>
+    <a href="#tracking" class="mobile-link">Live Tracking</a>
+    <a href="#how" class="mobile-link">How It Works</a>
+    <a href="#pricing" class="mobile-link">Pricing &amp; Compare</a>
+    <a href="#usecases" class="mobile-link">Use Cases</a>
+    <a href="#support" class="mobile-link">Contact &amp; Support</a>
+    <a href="#pricing" class="btn btn-primary" style="margin-top: 15px; width: 100%;">Start 1 Month Free Trial &rarr;</a>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="wrap hero-grid">
+        
+        <!-- Left Hero Copy -->
+        <div class="hero-content">
+          <div class="badge-pill">
+            <span class="live-pulse"></span>
+            🎁 1 MONTH FREE TRIAL &bull; NO CARD NEEDED
+          </div>
+          
+          <h1 class="hero-title">
+            Track What<br>
+            Matters, <span class="gradient-text">Live.</span>
+          </h1>
+          
+          <p class="hero-desc">
+            Live location sharing, route history, family safety and accurate GPS tracking &mdash; all from your phone. Start with 1 full month completely free!
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#pricing" class="btn btn-primary btn-lg">
+              Start 1 Month Free Trial <span>&rarr;</span>
+            </a>
+            <button class="btn btn-outline btn-lg" id="watchVideoBtn">
+              <span class="play-icon">&#9658;</span> Watch Live Demo
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <div class="trust-item">
+              <span class="trust-icon">&#127873;</span>
+              <div>
+                <strong>1 Month Free Trial</strong>
+                <small>30-day 100% free access</small>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">&#128737;&#65039;</span>
+              <div>
+                <strong>Safe &amp; Sovereign</strong>
+                <small>No foreign/China servers</small>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">&#128241;</span>
+              <div>
+                <strong>Only Location Needed</strong>
+                <small>Zero gallery or contact access</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Visual: Real Standalone 3D Human Movement & Location Matcher Stage -->
+        <div class="hero-visual-col">
+          <div class="stage-3d-world" id="stage3dWorld">
+            
+            <!-- Realistic 3D GPS Vector Map Environment -->
+            <div class="world-bg-scenery">
+              <!-- City Map Grid & Zones -->
+              <div class="city-map-grid">
+                <div class="map-zone green-zone" title="Cubbon Green Zone"></div>
+                <div class="map-zone blue-lake" title="Ulsoor Lake"></div>
+                <div class="map-street street-h1"></div>
+                <div class="map-street street-h2"></div>
+                <div class="map-street street-v1"></div>
+                <div class="map-street street-v2"></div>
+                
+                <!-- Street Landmarks -->
+                <span class="street-label label-mg">MG Road</span>
+                <span class="street-label label-trinity">Trinity Circle</span>
+                <span class="street-label label-brigade">Brigade Rd</span>
+                <span class="street-label label-metro">Metro Station &#128647;</span>
+              </div>
+
+              <!-- 360° Rotating Radar Scanner Beam (Searching Location) -->
+              <div class="radar-scanner-center">
+                <div class="radar-sweep-beam"></div>
+                <div class="radar-scan-ring ring-1"></div>
+                <div class="radar-scan-ring ring-2"></div>
+                <div class="radar-scan-ring ring-3"></div>
+              </div>
+
+              <!-- Orbiting GPS Satellite -->
+              <div class="satellite-orbit">
+                <span class="satellite-icon">&#128752;</span>
+                <div class="satellite-beam beam-left"></div>
+                <div class="satellite-beam beam-right"></div>
+              </div>
+
+              <!-- Asphalt Walking Highway -->
+              <div class="world-walking-highway">
+                <div class="highway-lane-dashes"></div>
+              </div>
+
+              <!-- Floating Map Pins -->
+              <span class="floating-pin pin-left" title="Rahul's Start Location">&#128205;</span>
+              <span class="floating-pin pin-right" title="Priya's Start Location">&#128205;</span>
+            </div>
+
+            <!-- 3D Boy Character (Left) - Rahul -->
+            <div class="human-actor boy-actor" id="boyActor">
+              <div class="avatar-tag boy-tag">
+                <span class="online-dot"></span>
+                <span>Rahul (Host)</span>
+              </div>
+              
+              <div class="skeletal-body boy-body" id="boySkeletal">
+                <!-- Torso (Head, Phone, Arms, Backpack, Upper Body) -->
+                <div class="sk-limb sk-torso boy-torso">
+                  <img src="assets/boy_torso.png?v=2" alt="Rahul 3D Torso" class="sk-img">
+                  <!-- Sonar Pulse from Handheld Phone -->
+                  <div class="phone-radar radar-boy">
+                    <span class="radar-wave"></span>
+                    <span class="radar-wave wave-2"></span>
+                  </div>
+                </div>
+
+                <!-- Left Leg with Running Sneaker -->
+                <div class="sk-limb sk-leg boy-leg-left">
+                  <img src="assets/boy_leg_l.png?v=2" alt="Rahul Left Leg" class="sk-img">
+                </div>
+
+                <!-- Right Leg with Running Sneaker -->
+                <div class="sk-limb sk-leg boy-leg-right">
+                  <img src="assets/boy_leg_r.png?v=2" alt="Rahul Right Leg" class="sk-img">
+                </div>
+              </div>
+
+              <!-- Realistic Dual Footstep Ground Shadows -->
+              <div class="dual-foot-shadows">
+                <div class="foot-shadow foot-shadow-l boy-shadow-l"></div>
+                <div class="foot-shadow foot-shadow-r boy-shadow-r"></div>
+              </div>
+              <!-- Footstep Impact Pulse on Road -->
+              <div class="footstep-ripple boy-step"></div>
+            </div>
+
+            <!-- Central 3D Smartphone Display -->
+            <div class="phone-3d-center" id="centerPhone">
+              <div class="phone-case">
+                <div class="phone-top-bar">
+                  <span>9:41</span>
+                  <div class="phone-speaker"></div>
+                  <span>&#9679;&#9679;&#9679; &#9646;</span>
+                </div>
+                
+                <div class="phone-map-view">
+                  <!-- Vector Map Roads & Route -->
+                  <div class="map-grid-roads"></div>
+                  <svg class="map-route-svg" viewBox="0 0 240 320" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="laserGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0b74f4"/>
+                        <stop offset="50%" stop-color="#00e5a3"/>
+                        <stop offset="100%" stop-color="#0b74f4"/>
+                      </linearGradient>
+                    </defs>
+                    <path id="svgMapRoute" d="M 40 270 Q 70 210, 120 180 T 200 60" fill="none" stroke="url(#laserGrad)" stroke-width="6" stroke-linecap="round"/>
+                    
+                    <!-- Pulsing GPS Marker at Boy's location -->
+                    <circle cx="40" cy="270" r="8" fill="#00ba90" stroke="#ffffff" stroke-width="3"/>
+                    <!-- Pulsing GPS Marker at Girl's location -->
+                    <circle cx="200" cy="60" r="8" fill="#0b74f4" stroke="#ffffff" stroke-width="3"/>
+                    
+                    <!-- Moving Signal Beacon -->
+                    <circle id="movingSignalDot" r="6" fill="#00e5a3" stroke="#ffffff" stroke-width="2">
+                      <animateMotion dur="3.5s" repeatCount="indefinite" path="M 40 270 Q 70 210, 120 180 T 200 60" />
+                    </circle>
+                  </svg>
+                </div>
+
+                <!-- Floating Telemetry Overlay inside Phone -->
+                <div class="phone-hud" id="phoneHud">
+                  <div class="hud-top">
+                    <span class="hud-status">
+                      <span class="green-dot"></span> Live Tracking
+                    </span>
+                    <span class="hud-badge" id="hudState">Active</span>
+                  </div>
+                  <div class="hud-meta">
+                    <div>
+                      <small>Last Updated</small>
+                      <b id="hudUpdated">Just now</b>
+                    </div>
+                    <div>
+                      <small>Accuracy</small>
+                      <b>&plusmn; 5 meters</b>
+                    </div>
+                  </div>
+                  <div class="hud-distance">
+                    <div class="dist-row">
+                      <span>Distance:</span>
+                      <b id="liveDistText">850m</b>
+                    </div>
+                    <div class="dist-progress-track">
+                      <div class="dist-progress-bar" id="liveProgressBar"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 3D Girl Character (Right) - Priya -->
+            <div class="human-actor girl-actor" id="girlActor">
+              <div class="avatar-tag girl-tag">
+                <span class="online-dot"></span>
+                <span>Priya (Connected)</span>
+              </div>
+              
+              <div class="skeletal-body girl-body" id="girlSkeletal">
+                <!-- Torso (Head, Phone, Pink Hoodie, Waving Hand, Upper Body) -->
+                <div class="sk-limb sk-torso girl-torso">
+                  <img src="assets/girl_torso.png?v=2" alt="Priya 3D Torso" class="sk-img">
+                  <!-- Sonar Pulse from Handheld Phone -->
+                  <div class="phone-radar radar-girl">
+                    <span class="radar-wave"></span>
+                    <span class="radar-wave wave-2"></span>
+                  </div>
+                </div>
+
+                <!-- Left Leg with Pink Sneaker -->
+                <div class="sk-limb sk-leg girl-leg-left">
+                  <img src="assets/girl_leg_l.png?v=2" alt="Priya Left Leg" class="sk-img">
+                </div>
+
+                <!-- Right Leg with Pink Sneaker -->
+                <div class="sk-limb sk-leg girl-leg-right">
+                  <img src="assets/girl_leg_r.png?v=2" alt="Priya Right Leg" class="sk-img">
+                </div>
+              </div>
+
+              <!-- Realistic Dual Footstep Ground Shadows -->
+              <div class="dual-foot-shadows">
+                <div class="foot-shadow foot-shadow-l girl-shadow-l"></div>
+                <div class="foot-shadow foot-shadow-r girl-shadow-r"></div>
+              </div>
+              <!-- Footstep Impact Pulse on Road -->
+              <div class="footstep-ripple girl-step"></div>
+            </div>
+
+            <!-- Location Matched Celebration Popup -->
+            <div class="match-popup-banner" id="matchPopupBanner">
+              <span class="celebration-emoji">&#127881;</span>
+              <div>
+                <strong>Location Matched! Connected!</strong>
+                <small>Live GPS synced: Rahul and Priya are 0m away</small>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Interactive 3D Walk Controller -->
+          <div class="human-motion-controller">
+            <div class="controller-info">
+              <span class="radar-icon">&#128225;</span>
+              <div>
+                <strong>Live 3D Movement Simulator</strong>
+                <p id="motionStatusText">Both 3D avatars are tracking live location via GPS.</p>
+              </div>
+            </div>
+            <button class="btn btn-sm btn-primary" id="triggerMeetupBtn">
+              &#9654; Walk &amp; Connect Location
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: Powerful Features for Your Peace of Mind -->
+    <section class="section features-section" id="features">
+      <div class="wrap">
+        <div class="section-heading text-center">
+          <h2 class="section-title">
+            Powerful Features for Your <span class="gradient-text">Peace of Mind</span>
+          </h2>
+          <p class="section-subtitle">
+            Everything you need for reliable location tracking and safety, in one place.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Card 1 -->
+          <div class="feature-card">
+            <div class="icon-circle icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="2"/>
+                <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Live Tracking</h3>
+            <p class="feature-desc">Share your real-time location with friends and family.</p>
+            <a href="#tracking" class="card-arrow-link" aria-label="Explore Live Tracking">&rarr;</a>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feature-card">
+            <div class="icon-circle icon-mint">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19a4 4 0 0 1 4-4h8a4 4 0 0 0 4-4V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v14z"/>
+                <circle cx="18" cy="19" r="3"/>
+                <circle cx="6" cy="19" r="3"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Route History</h3>
+            <p class="feature-desc">View and save your past journeys automatically.</p>
+            <a href="#tracking" class="card-arrow-link" aria-label="Explore Route History">&rarr;</a>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feature-card">
+            <div class="icon-circle icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Device Sharing</h3>
+            <p class="feature-desc">Share access with family members and trusted people.</p>
+            <a href="#how" class="card-arrow-link" aria-label="Explore Device Sharing">&rarr;</a>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="feature-card">
+            <div class="icon-circle icon-orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Geo Alerts</h3>
+            <p class="feature-desc">Get timely alerts when someone enters or leaves a specific location.</p>
+            <a href="#support" class="card-arrow-link" aria-label="Explore Geo Alerts">&rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Real-Time Tracking, Made Simple (Clean Native Vector Map Dashboard) -->
+    <section class="section tracking-section" id="tracking">
+      <div class="wrap tracking-grid">
+        
+        <!-- Left Column -->
+        <div class="tracking-left">
+          <h2 class="section-title">
+            Real-Time Tracking,<br>
+            <span class="gradient-text">Made Simple</span>
+          </h2>
+          <p class="tracking-subtext">
+            See live movement, route history and detailed location information on a beautiful map interface.
+          </p>
+
+          <ul class="check-list">
+            <li>
+              <span class="check-icon">&#10003;</span>
+              <span>Live location updates on map</span>
+            </li>
+            <li>
+              <span class="check-icon">&#10003;</span>
+              <span>Detailed route history with timestamps</span>
+            </li>
+            <li>
+              <span class="check-icon">&#10003;</span>
+              <span>Share with family, friends or team members</span>
+            </li>
+          </ul>
+
+          <button class="btn btn-primary btn-lg" id="runMapDemoBtn">
+            Experience Live Tracking &rarr;
+          </button>
+        </div>
+
+        <!-- Right Column: Interactive Clean Laptop Dashboard Mockup -->
+        <div class="tracking-right">
+          <div class="laptop-container">
+            <div class="laptop-screen">
+              
+              <!-- Clean SVG Map Interface without cropped text -->
+              <div class="laptop-map-app">
+                <!-- Mini Sidebar -->
+                <div class="laptop-sidebar">
+                  <div class="sidebar-logo">
+                    <img src="assets/logo_pin.png" width="22" height="28" alt="RaahMilo Pin" style="object-fit:contain;">
+                    <span>Raah<b>Milo</b></span>
+                  </div>
+                  <nav class="sidebar-nav">
+                    <span class="active">&#128225; Live Tracking</span>
+                    <span>&#9201; Route History</span>
+                    <span>&#128241; My Devices</span>
+                    <span>&#128101; Shared With Me</span>
+                    <span>&#128276; Geo Alerts</span>
+                    <span>&#9881; Settings</span>
+                  </nav>
+                </div>
+
+                <!-- Main Map Canvas Area -->
+                <div class="laptop-map-canvas">
+                  <div class="map-street-grid"></div>
+                  
+                  <!-- Vector Bangalore Route -->
+                  <svg class="laptop-route-svg" viewBox="0 0 500 320" preserveAspectRatio="none">
+                    <path id="laptopRoutePath" d="M 60 260 L 140 260 C 180 260, 200 200, 240 190 S 330 190, 360 140 L 440 90" fill="none" stroke="#0b74f4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="60" cy="260" r="10" fill="#00ba90" stroke="#ffffff" stroke-width="4"/>
+                    <circle cx="440" cy="90" r="10" fill="#f05252" stroke="#ffffff" stroke-width="4"/>
+                  </svg>
+
+                  <!-- Moving Car Badge -->
+                  <div class="interactive-car-pin" id="interactiveCarPin">
+                    <span class="car-symbol">&#128663;</span>
+                    <div class="car-info-bubble">
+                      <strong>Family Car</strong>
+                      <span id="carSpeedText">Moving &bull; 65 km/h</span>
+                    </div>
+                  </div>
+
+                  <!-- Trip Details Popover -->
+                  <div class="laptop-meta-badge">
+                    <div class="badge-row">
+                      <span>Last Updated: <b id="laptopUpdated">Just now</b></span>
+                      <span>Distance: <b id="laptopDist">12.4 km</b></span>
+                    </div>
+                    <div class="badge-road">
+                      &#128205; <span id="currentStreet">MG Road, Bengaluru, KA</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="laptop-base"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: Turn Your Phone Into a GPS Tracker -->
+    <section class="section phone-section" id="how">
+      <div class="wrap">
+        
+        <div class="phone-grid">
+          <!-- Left: Download info -->
+          <div class="phone-left">
+            <h2 class="section-title">
+              Turn Your Phone Into<br>
+              a <span class="gradient-text">GPS Tracker</span>
+            </h2>
+            <p class="phone-desc">
+              No extra hardware required. Install the RaahMilo app on your phone and start live tracking in seconds.
+            </p>
+
+            <div class="store-buttons">
+              <!-- Google Play Store Button -->
+              <a href="#support" class="store-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3.6 1.8L13.7 12 3.6 22.2c-.4-.3-.6-.8-.6-1.4V3.2c0-.6.2-1.1.6-1.4zm11.5 11.5l2.4 2.4-11.8 6.7 9.4-9.1zm0-2.6l-9.4-9.1L17.5 8.3l-2.4 2.4zm1.4 1.4l3.1-1.8c1-.6 1-1.5 0-2.1l-3.1-1.8-2.6 2.6 2.6 3.1z"/>
+                </svg>
+                <div>
+                  <small>GET IT ON</small>
+                  <strong>Google Play</strong>
+                </div>
+              </a>
+
+              <!-- Apple App Store Button -->
+              <a href="#support" class="store-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.98.6-2.62 1.35-.57.65-1.06 1.72-.93 2.74 1.01.08 2.02-.5 2.63-1.24z"/>
+                </svg>
+                <div>
+                  <small>Download on the</small>
+                  <strong>App Store</strong>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Center: Interactive Phone Simulation -->
+          <div class="phone-center">
+            <div class="interactive-mockup" id="phoneMockup">
+              <div class="mockup-notch"></div>
+              <div class="mockup-screen">
+                <div class="screen-brand">
+                  <img src="assets/logo_pin.png" alt="RaahMilo Pin" width="26" height="32" style="object-fit:contain;">
+                  <span>Raah<b>Milo</b></span>
+                </div>
+
+                <!-- State 1: Turned off -->
+                <div class="state-turned-off" id="stateOff">
+                  <div class="alert-radar-pulse">
+                    <span class="warning-pin">&#9906;</span>
+                  </div>
+                  <h3>Location is turned off!</h3>
+                  <p>Enable location to start live tracking and keep your loved ones safe.</p>
+                  <button class="btn btn-primary btn-block" id="enableLocationBtn">
+                    Enable Location &rarr;
+                  </button>
+                </div>
+
+                <!-- State 2: Active Live GPS (toggled on click) -->
+                <div class="state-active hidden" id="stateActive">
+                  <div class="active-radar-pulse">
+                    <span class="active-dot"></span>
+                  </div>
+                  <span class="live-tag">LIVE GPS BROADCASTING</span>
+                  <h3>Location Enabled!</h3>
+                  <div class="coords-box">
+                    <div><span>Lat:</span> <b>12.9716&deg; N</b></div>
+                    <div><span>Long:</span> <b>77.5946&deg; E</b></div>
+                    <div><span>Accuracy:</span> <b>&plusmn; 3 meters</b></div>
+                  </div>
+                  <button class="btn btn-outline btn-sm" id="disableLocationBtn" style="margin-top: 15px;">
+                    Pause Location
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: 3 Key benefits -->
+          <div class="phone-right">
+            <div class="benefit-item">
+              <div class="benefit-icon icon-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="benefit-title">Quick Setup</h3>
+                <p class="benefit-desc">Install and start tracking in minutes.</p>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-icon icon-mint">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="1" y="6" width="18" height="12" rx="2"/>
+                  <line x1="23" y1="11" x2="23" y2="13"/>
+                  <path d="M5 10h6"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="benefit-title">Battery Optimized</h3>
+                <p class="benefit-desc">Designed to run efficiently in the background.</p>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-icon icon-purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="benefit-title">Secure &amp; Private</h3>
+                <p class="benefit-desc">Your location data is encrypted and always private.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Permission Transparency Showcase (Zero Gallery Access) -->
+        <div class="permission-transparency-card">
+          <div class="permission-header">
+            <span class="permission-pill">&#128274; PERMISSION TRANSPARENCY &bull; ZERO SNOOPING</span>
+            <h3 class="permission-main-title">
+              Why Do Other GPS Apps Demand Access to Your Photo Gallery?
+            </h3>
+            <p class="permission-sub-title">
+              Even if you buy a physical GPS hardware tracker, you still have to install their companion app on your phone &mdash; and you STILL have to enable location! But worst of all: other tracking apps demand permission to access your <strong>Photo Gallery, Private Media, Storage, and Contacts</strong>.
+            </p>
+          </div>
+
+          <div class="permission-compare-grid">
+            
+            <!-- Other GPS Apps -->
+            <div class="perm-box perm-box-legacy">
+              <div class="perm-box-top">
+                <span class="perm-status-circle red">&#10006;</span>
+                <div>
+                  <h4 class="perm-box-heading">Other GPS Companion Apps</h4>
+                  <span class="perm-badge-legacy">Invasive Permissions Demanded</span>
+                </div>
+              </div>
+              <ul class="perm-list">
+                <li class="perm-item danger">
+                  <span class="perm-bullet">&#10005;</span>
+                  <span><strong>Location Required:</strong> You still have to turn on location on your phone.</span>
+                </li>
+                <li class="perm-item danger">
+                  <span class="perm-bullet">&#10005;</span>
+                  <span><strong>Photo Gallery &amp; Media Allowed:</strong> App asks to view your private photos, videos, and personal albums.</span>
+                </li>
+                <li class="perm-item danger">
+                  <span class="perm-bullet">&#10005;</span>
+                  <span><strong>Contacts &amp; Storage Access:</strong> Scans your address book and phone files.</span>
+                </li>
+              </ul>
+              <div class="perm-box-footer red-footer">
+                &#9888; A physical GPS tracker does NOT protect your privacy if their app is snooping on your personal photos!
+              </div>
+            </div>
+
+            <!-- RaahMilo -->
+            <div class="perm-box perm-box-clean">
+              <div class="perm-box-top">
+                <span class="perm-status-circle green">&#10003;</span>
+                <div>
+                  <h4 class="perm-box-heading">RaahMilo Smart GPS</h4>
+                  <span class="perm-badge-clean">Only 1 Permission &bull; 100% Clean</span>
+                </div>
+              </div>
+              <ul class="perm-list">
+                <li class="perm-item success">
+                  <span class="perm-bullet">&#10003;</span>
+                  <span><strong>Location ONLY Enabled:</strong> Used strictly to transmit your live GPS coordinates while tracking.</span>
+                </li>
+                <li class="perm-item success">
+                  <span class="perm-bullet">&#10003;</span>
+                  <span><strong>ZERO Photo Gallery Access:</strong> We never ask for, never access, and never touch your photos or videos.</span>
+                </li>
+                <li class="perm-item success">
+                  <span class="perm-bullet">&#10003;</span>
+                  <span><strong>ZERO Contacts or Storage Access:</strong> Absolutely zero snooping on your address book or personal files.</span>
+                </li>
+              </ul>
+              <div class="perm-box-footer green-footer">
+                &#10004; Simply enable location &mdash; that's it! Absolutely nothing else is ever requested or accessed.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: Compare & Save (Why Pay ₹6,000+ for Hardware? Only ₹1,990/year for RaahMilo) -->
+    <section class="section compare-section" id="pricing">
+      <div class="wrap">
+        
+        <div class="section-heading text-center">
+          <div class="badge-pill" style="margin-bottom: 14px;">
+            <span class="live-pulse"></span>
+            🎁 1 MONTH FREE TRIAL &bull; ZERO HIDDEN COSTS
+          </div>
+          <h2 class="section-title">
+            Why Pay ₹6,000+ for Hardware?<br>
+            Get RaahMilo for <span class="gradient-text">Only ₹1,990 / Year</span>
+          </h2>
+          <p class="section-subtitle">
+            Start with <strong>1 full month completely free</strong>! Most GPS companies sell cheap imported hardware that drains battery, charges endless renewal fees, and stops working in narrow streets (gali). RaahMilo turns your existing phone into a live tracker &mdash; zero hardware, zero SIM hassles, massive savings.
+          </p>
+        </div>
+
+        <!-- Shocking Security Reality: Foreign Country Tracking Alert -->
+        <div class="foreign-tracking-alert">
+          <div class="alert-top-row">
+            <div class="alert-pulse-badge">
+              <span class="danger-dot"></span>
+              CRITICAL PRIVACY WARNING
+            </div>
+            <span class="alert-classified-tag">&#128272; DATA SOVEREIGNTY REPORT</span>
+          </div>
+
+          <div class="alert-main-content">
+            <h3 class="alert-headline">
+              You Think You Are Safe &mdash; But Another Country Is Actually Tracking Your Live Location!
+            </h3>
+            <p class="alert-subheadline">
+              You installed a GPS tracker to protect your family, kids, and vehicles. You think you bought safety and peace of mind. <strong>The harsh reality? You are NOT safe at all.</strong>
+            </p>
+          </div>
+
+          <div class="alert-cards-row">
+            <!-- Danger 1 -->
+            <div class="alert-subcard danger-card">
+              <div class="subcard-header">
+                <span class="subcard-icon">&#127759;</span>
+                <span class="subcard-tag">Foreign Cloud Servers</span>
+              </div>
+              <h4 class="subcard-title">Your Live Coordinates Are Sent Overseas</h4>
+              <p class="subcard-text">
+                Most ₹5,000&ndash;₹6,000 GPS trackers sold in the market are generic devices bulk-imported from China. Their built-in firmware automatically transmits raw, unencrypted GPS data directly to servers in China and overseas &mdash; completely outside Indian law and privacy protection.
+              </p>
+            </div>
+
+            <!-- Danger 2 -->
+            <div class="alert-subcard danger-card">
+              <div class="subcard-header">
+                <span class="subcard-icon">&#128065;&#65039;</span>
+                <span class="subcard-tag">The False Sense of Safety</span>
+              </div>
+              <h4 class="subcard-title">Foreign Entities Know Your Family's Routine</h4>
+              <p class="subcard-text">
+                They know the exact school route of your children, your daily office commute, where your vehicle is parked at night, and exactly when your home is empty. You thought you bought protection, but you actually installed a 24/7 foreign surveillance tool inside your life!
+              </p>
+            </div>
+
+            <!-- Solution -->
+            <div class="alert-subcard solution-card">
+              <div class="subcard-header">
+                <span class="subcard-icon">&#128737;&#65039;</span>
+                <span class="subcard-tag safe-tag">The RaahMilo Guarantee</span>
+              </div>
+              <h4 class="subcard-title">100% Sovereign Privacy &bull; Zero Foreign Leaks</h4>
+              <p class="subcard-text">
+                RaahMilo is a pure smartphone platform. <strong>Zero data ever goes to foreign servers or Chinese hardware.</strong> Your live location is secured with bank-grade 256-bit AES encryption &mdash; visible strictly to you and your trusted family members. That is true safety!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison Cards Grid -->
+        <div class="compare-grid">
+          
+          <!-- Card 1: Traditional Hardware Trackers (Other Companies) -->
+          <div class="compare-card compare-card-legacy">
+            <div class="compare-header">
+              <span class="compare-badge legacy-badge">&#10006; Other GPS Companies</span>
+              <h3 class="compare-title">Old Hardware GPS Trackers</h3>
+              <div class="compare-price-block">
+                <span class="compare-total-price">₹10,000 – ₹12,000+</span>
+                <span class="compare-period-label">Estimated First Year Total Expense</span>
+              </div>
+              <p class="compare-summary">
+                High upfront hardware cost, recurring SIM recharges, and expensive yearly renewal fees.
+              </p>
+            </div>
+
+            <div class="compare-divider"></div>
+
+            <div class="compare-list">
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>₹5,000 – ₹6,000 Hardware Cost</strong>
+                  <p>Forced to purchase an expensive physical GPS box upfront before even starting.</p>
+                </div>
+              </div>
+
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>Separate SIM Card Subscriptions</strong>
+                  <p>Requires buying a dedicated SIM card and paying monthly data recharge plans.</p>
+                </div>
+              </div>
+
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>Annual Device Renewal Fees</strong>
+                  <p>After 1 year, companies charge ₹2,000 to ₹3,000 annually just to keep the device active on their server.</p>
+                </div>
+              </div>
+
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>Separate App Subscriptions</strong>
+                  <p>Extra hidden fees to unlock live route history, notifications, and family access inside their app.</p>
+                </div>
+              </div>
+
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>Fails in Narrow Streets (Gali)</strong>
+                  <p>Weak, low-cost antenna chips lose satellite signal in narrow city lanes, basements, and covered parking.</p>
+                </div>
+              </div>
+
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>Battery Drainage &amp; Wire-Cutting Hazards</strong>
+                  <p>Small hardware battery dies within 24–48 hours, or forces mechanic wire-cutting in your car/bike (voids warranty).</p>
+                </div>
+              </div>
+
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>Tracked by Foreign Countries (China Servers)</strong>
+                  <p>You think you are safe, but you are not! Raw GPS coordinates are beamed to overseas servers, giving foreign entities access to your home, children's school routes, and daily habits.</p>
+                </div>
+              </div>
+
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>Demands Photo Gallery &amp; Contact Access</strong>
+                  <p>Their companion app forces you to enable location &mdash; and also demands permission to view your private photo gallery, media files, and contacts. Why does a GPS app need to see your family photos?</p>
+                </div>
+              </div>
+
+              <div class="compare-row negative">
+                <span class="status-icon icon-cross">&#10005;</span>
+                <div class="compare-row-content">
+                  <strong>Cheap Bulk-Imported Chinese Hardware</strong>
+                  <p>Most sellers bulk-import generic white-labeled Chinese trackers with high failure rates, unverified firmware, and zero data privacy.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare-bottom legacy-bottom">
+              <span class="bottom-tag">❌ Heavy ongoing expenses, maintenance headache &amp; frequent breakdowns</span>
+            </div>
+          </div>
+
+          <!-- Card 2: RaahMilo Smartphone GPS (Winner) -->
+          <div class="compare-card compare-card-featured">
+            <div class="featured-ribbon">⭐ 1 MONTH FREE TRIAL &bull; 100% SMARTPHONE POWERED</div>
+            <div class="compare-header">
+              <span class="compare-badge featured-badge">&#10004; RaahMilo Smart GPS</span>
+              <h3 class="compare-title">Pure Mobile App Tracking</h3>
+              <div class="compare-price-block">
+                <div class="trial-pill-tag">&#127873; 1 Month Free Trial Included</div>
+                <div class="price-val-row">
+                  <span class="curr">₹</span>
+                  <span class="val">1,990</span>
+                  <span class="per">/ year (After 30 Days Free)</span>
+                </div>
+                <span class="compare-period-label savings">&#10004; 30 Days 100% Free Trial &bull; Then ₹165/month &bull; Cancel Anytime</span>
+              </div>
+              <p class="compare-summary">
+                Experience full live GPS tracking risk-free for 1 month. No hardware, no extra SIM, and no credit card needed upfront.
+              </p>
+            </div>
+
+            <div class="compare-divider featured-divider"></div>
+
+            <div class="compare-list">
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>1 Month Free Trial (30 Days Risk-Free)</strong>
+                  <p>Get instant access to full live tracking, route history, and alerts with zero risk. Try it free for 30 days before paying a single rupee.</p>
+                </div>
+              </div>
+
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>₹0 Hardware Device Cost</strong>
+                  <p>No bulky device to purchase. Install RaahMilo on any Android phone or iPhone and start tracking immediately.</p>
+                </div>
+              </div>
+
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>₹0 Extra SIM Card Expenses</strong>
+                  <p>Uses your smartphone's existing mobile internet. No second SIM card, no monthly recharge bills.</p>
+                </div>
+              </div>
+
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>Only One Simple App Subscription (₹1,990/yr)</strong>
+                  <p>Pay just ₹1,990 once a year after your free trial. No device renewal fees, no server maintenance charges, no surprise fees.</p>
+                </div>
+              </div>
+
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>Pinpoint Accurate in Narrow Streets (Gali)</strong>
+                  <p>Hybrid smartphone triangulation (GPS + GLONASS + Wi-Fi + Cell Towers) keeps tracking accurately even in tight alleys and basements.</p>
+                </div>
+              </div>
+
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>Zero Battery Worries &amp; No Wire Cutting</strong>
+                  <p>Proprietary low-power background tracking consumes less than 3% phone battery per day. 100% safe for vehicles.</p>
+                </div>
+              </div>
+
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>Only Location Enabled &bull; Zero Gallery Access</strong>
+                  <p>You only enable location &mdash; absolutely nothing else! Zero access to your photo gallery, zero contact snooping, zero media storage permissions.</p>
+                </div>
+              </div>
+
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>100% Sovereign Privacy &bull; Zero Foreign Leaks</strong>
+                  <p>Zero data goes to foreign servers or Chinese backdoors. Bank-grade 256-bit encryption ensures your live coordinates stay strictly private between you and your family.</p>
+                </div>
+              </div>
+
+              <div class="compare-row positive">
+                <span class="status-icon icon-check">&#10003;</span>
+                <div class="compare-row-content">
+                  <strong>Instant 60-Second Setup</strong>
+                  <p>Simply install the app, invite your family or team, and view live movement on 3D interactive maps.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare-bottom featured-bottom">
+              <a href="#support" class="btn btn-primary btn-block btn-lg" id="btnGetRaahMiloPlan">
+                Start 1 Month Free Trial &rarr;
+              </a>
+              <span class="safe-badge">&#128274; 100% Free for 30 Days &bull; No Credit Card Needed &bull; Instant Activation</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3 Feature Reality Cards: Narrow Streets (Gali), Battery & Imported Chinese Hardware -->
+        <div class="reality-grid">
+          
+          <div class="reality-card">
+            <div class="reality-icon icon-blue">&#128506;</div>
+            <h3 class="reality-title">Why Cheap Hardware Trackers Fail in Narrow Streets (Gali)</h3>
+            <p class="reality-desc">
+              Standalone ₹5,000 GPS gadgets use basic single-band GPS antennas that require an unobstructed view of the open sky. In Indian narrow streets (gali), under tall buildings, or inside parking basements, their satellite signals get completely blocked. <strong>RaahMilo uses your smartphone's hybrid multi-source positioning</strong> (combining GPS, Wi-Fi beacons, and cellular towers) to keep tracking you accurately anywhere.
+            </p>
+          </div>
+
+          <div class="reality-card">
+            <div class="reality-icon icon-mint">&#9889;</div>
+            <h3 class="reality-title">The Battery &amp; Vehicle Wire-Cutting Trap</h3>
+            <p class="reality-desc">
+              Physical GPS trackers either have tiny internal batteries that die within 24 to 48 hours, or require mechanic wire-cutting to splice into your car or bike's main battery. Wire splicing creates short-circuit hazards, drains vehicle batteries overnight, and voids vehicle warranty. <strong>RaahMilo runs safely on your phone</strong> with intelligent power management.
+            </p>
+          </div>
+
+          <div class="reality-card">
+            <div class="reality-icon icon-red">&#128247;</div>
+            <h3 class="reality-title">The Photo Gallery &amp; Invasive Permissions Trap</h3>
+            <p class="reality-desc">
+              Even if you purchase a hardware GPS device, you still have to install their companion app on your phone &mdash; and they force you to enable location PLUS grant access to your <strong>Photo Gallery, Media Library, and Contacts</strong>! A GPS tracker has zero technical need to view your photos. <strong>With RaahMilo, you only enable location.</strong> Zero gallery access, zero contact reading, zero invasive permissions &mdash; ever.
+            </p>
+          </div>
+
+          <div class="reality-card">
+            <div class="reality-icon icon-purple">&#128272;</div>
+            <h3 class="reality-title">Say No to Generic Bulk-Imported Chinese Trackers</h3>
+            <p class="reality-desc">
+              Almost every generic GPS hardware brand in the market bulk-imports cheap unbranded gadgets from China and slaps their local brand name on it. These devices are plagued by buggy software, server crashes, and security vulnerabilities. <strong>RaahMilo is a pure, modern software platform</strong> built with end-to-end security, guaranteed 99.9% uptime, and dedicated customer support.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: Tracking for Every Part of Your Life (Clean 1024x1024 3D Illustrations) -->
+    <section class="section usecases-section" id="usecases">
+      <div class="wrap">
+        <div class="section-heading text-center">
+          <h2 class="section-title">
+            Tracking for <span class="gradient-text">Every Part of Your Life</span>
+          </h2>
+          <p class="section-subtitle">
+            Whether it's your loved ones, vehicles or your field team &mdash; RaahMilo keeps everyone connected and safe.
+          </p>
+        </div>
+
+        <div class="usecases-grid">
+          
+          <!-- Card 1: For Families -->
+          <div class="usecase-card">
+            <div class="usecase-img-wrap">
+              <img src="assets/3d_family.jpg" alt="3D RaahMilo for Families" class="usecase-img">
+            </div>
+            <div class="usecase-body">
+              <div class="usecase-header">
+                <span class="usecase-icon-badge icon-blue">&#128106;</span>
+                <h3 class="usecase-title">For Families</h3>
+              </div>
+              <p class="usecase-desc">Keep your loved ones safe and stay connected, always.</p>
+              <a href="#support" class="card-arrow-link" aria-label="Explore For Families">&rarr;</a>
+            </div>
+          </div>
+
+          <!-- Card 2: For Vehicles -->
+          <div class="usecase-card">
+            <div class="usecase-img-wrap">
+              <img src="assets/3d_car.jpg" alt="3D RaahMilo for Vehicles" class="usecase-img">
+            </div>
+            <div class="usecase-body">
+              <div class="usecase-header">
+                <span class="usecase-icon-badge icon-mint">&#128663;</span>
+                <h3 class="usecase-title">For Vehicles</h3>
+              </div>
+              <p class="usecase-desc">Track your car, bike or fleet in real-time.</p>
+              <a href="#support" class="card-arrow-link" aria-label="Explore For Vehicles">&rarr;</a>
+            </div>
+          </div>
+
+          <!-- Card 3: For Field Teams -->
+          <div class="usecase-card">
+            <div class="usecase-img-wrap">
+              <img src="assets/3d_field_team.jpg" alt="3D RaahMilo for Field Teams" class="usecase-img">
+            </div>
+            <div class="usecase-body">
+              <div class="usecase-header">
+                <span class="usecase-icon-badge icon-purple">&#128188;</span>
+                <h3 class="usecase-title">For Field Teams</h3>
+              </div>
+              <p class="usecase-desc">Monitor your team's location and improve on-field safety and productivity.</p>
+              <a href="#support" class="card-arrow-link" aria-label="Explore For Field Teams">&rarr;</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Need Support? (FormSubmit Integration) -->
+    <section class="section support-section" id="support">
+      <div class="wrap support-grid">
+        
+        <!-- Left: Support info -->
+        <div class="support-left">
+          <h2 class="section-title">
+            Need <span class="gradient-text">Support?</span>
+          </h2>
+          <p class="support-subtext">
+            We're here to help! If you have any questions, feedback or need assistance, feel free to reach out to us.
+          </p>
+
+          <div class="contact-channel-card">
+            <div class="channel-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0b74f4" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="3"/>
+                <path d="M22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </div>
+            <div>
+              <small class="channel-label">Email us at</small>
+              <a href="mailto:support@raahmilo.com" class="channel-link">support@raahmilo.com</a>
+              <span class="reply-time">&bull; We reply within 24 hours</span>
+            </div>
+          </div>
+
+          <div class="email-direct-info">
+            <span class="info-tag">&#10004; Direct Support Active</span>
+            <p>Your inquiries will be delivered directly to support.</p>
+          </div>
+        </div>
+
+        <!-- Right: FormSubmit Form -->
+        <div class="support-right">
+          <div class="contact-form-container">
+            
+            <form 
+              id="raahMiloContactForm" 
+              class="contact-form" 
+              action="https://formsubmit.co/skdas1641999@gmail.com" 
+              method="POST"
+            >
+              <!-- FormSubmit Required Hidden Configs -->
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_subject" value="New Inquiry from RaahMilo Website">
+              <input type="hidden" name="_next" value="#support">
+              <input type="text" name="_honey" style="display:none">
+
+              <!-- Two column row: Name & Email -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="userName">Name</label>
+                  <input type="text" id="userName" name="name" placeholder="Your name" required maxlength="80">
+                </div>
+                <div class="form-group">
+                  <label for="userEmail">Email</label>
+                  <input type="email" id="userEmail" name="email" placeholder="you@example.com" required maxlength="120">
+                </div>
+              </div>
+
+              <!-- Subject -->
+              <div class="form-group">
+                <label for="userSubject">Subject</label>
+                <input type="text" id="userSubject" name="subject" placeholder="How can we help?" required maxlength="150">
+              </div>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label for="userMessage">Message</label>
+                <textarea id="userMessage" name="message" rows="4" placeholder="Tell us about your request..." required maxlength="3000"></textarea>
+              </div>
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitFormBtn">
+                <span class="btn-text">Send Email &rarr;</span>
+                <span class="btn-loader hidden">
+                  <span class="spinner"></span> Sending message...
+                </span>
+              </button>
+
+              <!-- Feedback / Status message container -->
+              <div id="formStatusBox" class="form-status-box hidden" role="status" aria-live="polite"></div>
+
+            </form>
+
+            <!-- 3D Decorative Vector Mail Badge -->
+            <div class="support-3d-floating-badge">
+              <div class="floating-mail-icon">&#128140;</div>
+              <div class="floating-bubble">&#128172;</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="wrap footer-content">
+      
+      <!-- Brand & Tagline -->
+      <div class="footer-brand-col">
+        <img src="assets/logo_main.png" alt="RaahMilo" width="160" height="auto">
+        <p class="footer-tagline">Track What Matters, Live.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links-col">
+        <span class="footer-heading">Quick Links</span>
+        <div class="footer-nav">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#tracking">Live Tracking</a>
+          <a href="#how">How It Works</a>
+          <a href="#pricing">Pricing &amp; Compare</a>
+          <a href="#usecases">Use Cases</a>
+          <a href="#support">Support &amp; Contact</a>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="footer-social-col">
+        <span class="footer-heading">Follow Us</span>
+        <div class="social-icons">
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook" class="social-icon">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram" class="social-icon">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- X (Twitter) -->
+          <a href="#" aria-label="X Twitter" class="social-icon">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube" class="social-icon">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn" class="social-icon">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wrap footer-bottom">
+      <small>&copy; <span id="currentYear">2024</span> RaahMilo.com &mdash; All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
