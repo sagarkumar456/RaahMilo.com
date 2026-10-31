@@ -819,14 +819,18 @@ a {
   animation: polylinePulseDash 1.2s linear infinite;
 }
 
-/* Dynamic Live GPS Trailing Polyline (Car Route) */
-.car-active-trail {
+/* Dynamic Live GPS Trailing Polyline (Car Route & Bike Route - GPS Green) */
+.car-active-trail,
+.bike-active-trail {
+  stroke: #00c853 !important;
   pointer-events: none;
   stroke-linecap: round;
   stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(0, 230, 118, 0.85));
 }
 
-.car-laser-pulse {
+.car-laser-pulse,
+.bike-laser-pulse {
   pointer-events: none;
   animation: polylinePulseDash 0.8s linear infinite;
 }
@@ -1946,15 +1950,11 @@ a {
   100% { transform: translateY(80px) translateX(-60px); }
 }
 
-/* Target 3: Courier Bike */
+/* Target 3: Courier Bike (Dynamic GPS Trailing Polyline Synchronized via JS) */
 .target-bike {
   top: calc(55% - 20px);
-  animation: bikeCrossPath 13s linear infinite;
-}
-
-@keyframes bikeCrossPath {
-  0% { right: -60px; }
-  100% { right: 104%; }
+  left: -80px;
+  will-change: left;
 }
 
 /* Telemetry Cards */

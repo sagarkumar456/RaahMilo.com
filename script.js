@@ -59,14 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const carActiveTrail = document.getElementById('carActiveTrail');
   const carLaserPulse = document.getElementById('carLaserPulse');
+  const bikeActiveTrail = document.getElementById('bikeActiveTrail');
+  const bikeLaserPulse = document.getElementById('bikeLaserPulse');
   const pinStart = document.getElementById('pinStart');
   const pinMid = document.getElementById('pinMid');
   const pinDest = document.getElementById('pinDest');
+  const pinBikeDest = document.getElementById('pinBikeDest');
 
   const carSpeedBadge = document.querySelector('#targetCar .target-speed');
   const carSubBadge = document.querySelector('#targetCar .target-card-sub span:first-child');
   const priyaSpeedBadge = document.querySelector('#targetPriya .target-speed');
   const bikeSpeedBadge = document.querySelector('#targetBike .target-speed');
+  const bikeSubBadge = document.querySelector('#targetBike .target-card-sub span');
 
   // Filter Pill Click Handlers
   filterPills.forEach(pill => {
@@ -106,96 +110,134 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // REAL-TIME SYNCHRONIZED CAR MOVEMENT & DYNAMIC TRAILING POLYLINE
+  // REAL-TIME SYNCHRONIZED VEHICLES (CAR & BIKE) WITH DYNAMIC GREEN GPS TRAILS
   let isSimRunning = true;
-  let carProgress = 0; // 0.0 to 1.0
+  let carProgress = 0; // 0.0 to 1.15
+  let bikeProgress = 0.25; // Staggered start so bike and car move naturally
   let lastTimestamp = null;
-  const loopDurationMs = 15000; // 15 seconds full circuit
 
-  // Route parameters in SVG coordinate space (viewBox 0 0 1000 500)
-  const routeStartX = -40;
-  const routeEndX = 860; // Destination pin X
-  const routeY = 160;
+  const carLoopDurationMs = 14000;  // 14 seconds
+  const bikeLoopDurationMs = 17000; // 17 seconds
 
-  function animateCarAndPolyline(timestamp) {
+  // MG Road coordinates for Car
+  const carStartX = -40;
+  const carEndX = 860;
+  const carY = 160;
+
+  // Residency Road coordinates for Bike
+  const bikeStartX = -40;
+  const bikeEndX = 820;
+  const bikeY = 275;
+
+  function animateVehiclesAndPolylines(timestamp) {
     if (!lastTimestamp) lastTimestamp = timestamp;
     const delta = timestamp - lastTimestamp;
     lastTimestamp = timestamp;
 
     if (isSimRunning) {
-      carProgress += delta / loopDurationMs;
-
-      // When reaching destination, hold for 2.2 seconds then reset smoothly
+      // -----------------------------------------------------------------
+      // 1. RAHUL'S CAR: LIVE MOVEMENT & GREEN TRAILING GPS PATH
+      // -----------------------------------------------------------------
+      carProgress += delta / carLoopDurationMs;
       if (carProgress > 1.15) {
         carProgress = 0;
       }
 
-      // 0.0 to 0.85: Car is actively driving along MG Road
-      // 0.85 to 1.15: Car has reached destination, holding position
-      const driveProgress = Math.min(carProgress / 0.85, 1.0);
-      const currentX = routeStartX + driveProgress * (routeEndX - routeStartX);
+      const carDriveProg = Math.min(carProgress / 0.85, 1.0);
+      const currentCarX = carStartX + carDriveProg * (carEndX - carStartX);
 
-      // 1. DYNAMICALLY DRAW POLYLINE EXACTLY TO CAR'S CURRENT REAR/POSITION
-      // Polyline starts from -40 and extends to currentX in real-time as car moves
+      // Dynamically draw GPS Green Trailing Path right behind the car
       if (carActiveTrail) {
-        carActiveTrail.setAttribute('d', `M ${routeStartX},${routeY} L ${Math.round(currentX)},${routeY}`);
+        carActiveTrail.setAttribute('d', `M ${carStartX},${carY} L ${Math.round(currentCarX)},${carY}`);
       }
       if (carLaserPulse) {
-        carLaserPulse.setAttribute('d', `M ${routeStartX},${routeY} L ${Math.round(currentX)},${routeY}`);
+        carLaserPulse.setAttribute('d', `M ${carStartX},${carY} L ${Math.round(currentCarX)},${carY}`);
       }
 
-      // 2. POSITION CAR DIV IN EXACT LOCKSTEP (1000 SVG units = 100% width)
+      // Position Car DIV in exact lockstep
       if (targetCar) {
-        const carPercent = (currentX / 1000) * 100;
-        // Anchor car slightly forward so polyline attaches to rear taillight
-        targetCar.style.left = `calc(${carPercent}% - 32px)`;
+        const carPercent = (currentCarX / 1000) * 100;
+        targetCar.style.left = `calc(${carPercent}% - 30px)`;
       }
 
-      // 3. REALISTIC SPEED & WAYPOINT TELEMETRY UPDATES
+      // Live Telemetry updates for Car
       if (carSpeedBadge && carSubBadge) {
-        if (driveProgress < 0.22) {
+        if (carDriveProg < 0.22) {
           carSpeedBadge.textContent = '38 km/h';
           carSubBadge.textContent = 'Indiranagar (Starting)';
           if (pinStart) pinStart.classList.add('pin-active');
-        } else if (driveProgress >= 0.22 && driveProgress < 0.45) {
+        } else if (carDriveProg >= 0.22 && carDriveProg < 0.45) {
           carSpeedBadge.textContent = '44 km/h';
           carSubBadge.textContent = 'MG Road • En Route';
           if (pinStart) pinStart.classList.remove('pin-active');
-        } else if (driveProgress >= 0.45 && driveProgress < 0.58) {
-          // Slow down near Trinity Circle
+        } else if (carDriveProg >= 0.45 && carDriveProg < 0.58) {
           carSpeedBadge.textContent = '22 km/h';
           carSubBadge.textContent = 'Trinity Circle (Junction)';
           if (pinMid) pinMid.classList.add('pin-active');
-        } else if (driveProgress >= 0.58 && driveProgress < 0.88) {
+        } else if (carDriveProg >= 0.58 && carDriveProg < 0.88) {
           carSpeedBadge.textContent = '48 km/h';
           carSubBadge.textContent = 'Brigade Rd Arterial';
           if (pinMid) pinMid.classList.remove('pin-active');
           if (pinDest) pinDest.classList.remove('pin-active');
         } else {
-          // Arrived at destination
           carSpeedBadge.textContent = '0 km/h (Reached)';
           carSubBadge.textContent = '✓ MG Road Central (0m)';
           if (pinDest) pinDest.classList.add('pin-active');
         }
       }
+
+      // -----------------------------------------------------------------
+      // 2. COURIER BIKE: LIVE MOVEMENT & GREEN TRAILING GPS PATH
+      // -----------------------------------------------------------------
+      bikeProgress += delta / bikeLoopDurationMs;
+      if (bikeProgress > 1.15) {
+        bikeProgress = 0;
+      }
+
+      const bikeDriveProg = Math.min(bikeProgress / 0.85, 1.0);
+      const currentBikeX = bikeStartX + bikeDriveProg * (bikeEndX - bikeStartX);
+
+      // Dynamically draw GPS Green Trailing Path right behind the bike
+      if (bikeActiveTrail) {
+        bikeActiveTrail.setAttribute('d', `M ${bikeStartX},${bikeY} L ${Math.round(currentBikeX)},${bikeY}`);
+      }
+      if (bikeLaserPulse) {
+        bikeLaserPulse.setAttribute('d', `M ${bikeStartX},${bikeY} L ${Math.round(currentBikeX)},${bikeY}`);
+      }
+
+      // Position Bike DIV in exact lockstep
+      if (targetBike) {
+        const bikePercent = (currentBikeX / 1000) * 100;
+        targetBike.style.left = `calc(${bikePercent}% - 24px)`;
+      }
+
+      // Live Telemetry updates for Bike
+      if (bikeSpeedBadge) {
+        if (bikeDriveProg < 0.3) {
+          bikeSpeedBadge.textContent = '26 km/h';
+          if (pinBikeDest) pinBikeDest.classList.remove('pin-active');
+        } else if (bikeDriveProg >= 0.3 && bikeDriveProg < 0.85) {
+          bikeSpeedBadge.textContent = '32 km/h';
+          if (pinBikeDest) pinBikeDest.classList.remove('pin-active');
+        } else {
+          bikeSpeedBadge.textContent = '0 km/h (Delivered)';
+          if (pinBikeDest) pinBikeDest.classList.add('pin-active');
+        }
+      }
     }
 
-    requestAnimationFrame(animateCarAndPolyline);
+    requestAnimationFrame(animateVehiclesAndPolylines);
   }
 
-  // Start the 60fps animation loop
-  requestAnimationFrame(animateCarAndPolyline);
+  // Start 60fps tracking animation loop
+  requestAnimationFrame(animateVehiclesAndPolylines);
 
-  // Background pedestrian and bike fluctuating speeds
+  // Background pedestrian fluctuating speeds
   setInterval(() => {
     if (!isSimRunning) return;
     if (priyaSpeedBadge) {
       const speeds = ['3.8 km/h', '4.2 km/h', '4.0 km/h'];
       priyaSpeedBadge.textContent = speeds[Math.floor(Math.random() * speeds.length)];
-    }
-    if (bikeSpeedBadge) {
-      const speeds = ['26 km/h', '31 km/h', '28 km/h', '34 km/h'];
-      bikeSpeedBadge.textContent = speeds[Math.floor(Math.random() * speeds.length)];
     }
   }, 2500);
 
@@ -203,11 +245,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnLiveSimToggle) {
     btnLiveSimToggle.addEventListener('click', () => {
       isSimRunning = !isSimRunning;
-      lastTimestamp = performance.now(); // avoid delta time-jump on resume
+      lastTimestamp = performance.now(); // avoid delta jump
       const playState = isSimRunning ? 'running' : 'paused';
 
       if (targetPriya) targetPriya.style.animationPlayState = playState;
-      if (targetBike) targetBike.style.animationPlayState = playState;
 
       const metroTrain = document.querySelector('.metro-train');
       if (metroTrain) metroTrain.style.animationPlayState = playState;
