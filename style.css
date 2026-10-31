@@ -3016,7 +3016,31 @@ a {
   }
 
   .permission-compare-grid {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(8px, 2vw, 14px);
+  }
+
+  .perm-box {
+    padding: clamp(14px, 3vw, 18px) clamp(10px, 2vw, 14px);
+    border-radius: 12px;
+  }
+
+  .perm-box-top {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .perm-status-circle {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    font-size: 0.72rem;
+  }
+
+  .perm-box-heading {
+    font-size: clamp(0.82rem, 2.6vw, 1rem);
+    line-height: 1.25;
   }
 
   .permission-transparency-card {
@@ -3024,23 +3048,163 @@ a {
     margin-top: 35px;
   }
 
+  /* Comparison Cards Side-by-Side (Aamne-Saamne) in Phone View */
   .compare-grid {
-    grid-template-columns: 1fr;
-    max-width: 520px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(6px, 2vw, 14px);
+    max-width: 100%;
     margin: 0 auto;
+    align-items: stretch;
   }
 
   .compare-card {
-    padding: 32px 22px;
+    padding: clamp(18px, 3.5vw, 26px) clamp(8px, 2vw, 14px);
+    border-radius: var(--radius-md);
   }
 
-  .reality-grid {
-    grid-template-columns: 1fr;
-    margin-top: 40px;
+  .featured-ribbon {
+    font-size: clamp(0.46rem, 1.7vw, 0.60rem);
+    padding: 3px 6px;
+    top: -10px;
+    letter-spacing: 0.02em;
+    max-width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .compare-header {
+    margin-bottom: 6px;
+  }
+
+  .compare-badge {
+    font-size: clamp(0.50rem, 1.6vw, 0.62rem);
+    padding: 2px 6px;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .compare-title {
+    font-size: clamp(0.85rem, 3vw, 1.2rem);
+    margin-bottom: 6px;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .compare-price-block {
+    margin-bottom: 6px;
+  }
+
+  .compare-total-price {
+    font-size: clamp(1.05rem, 3.8vw, 1.55rem);
+    line-height: 1.1;
+  }
+
+  .compare-period-label {
+    font-size: clamp(0.60rem, 1.8vw, 0.72rem);
+    line-height: 1.2;
+    margin-top: 2px;
+  }
+
+  .trial-pill-tag {
+    font-size: clamp(0.50rem, 1.6vw, 0.60rem);
+    padding: 2px 5px;
+    margin-bottom: 5px;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    white-space: normal;
+  }
+
+  .price-val-row {
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px;
+  }
+
+  .price-val-row .curr {
+    font-size: clamp(0.92rem, 3.2vw, 1.2rem);
   }
 
   .price-val-row .val {
-    font-size: 2.8rem;
+    font-size: clamp(1.45rem, 5.2vw, 2.2rem);
+    line-height: 1;
+  }
+
+  .price-val-row .per {
+    font-size: clamp(0.60rem, 1.8vw, 0.75rem);
+    display: block;
+    width: 100%;
+    margin-top: 2px;
+    line-height: 1.2;
+  }
+
+  .compare-summary {
+    font-size: clamp(0.66rem, 1.9vw, 0.76rem);
+    line-height: 1.35;
+    min-height: unset;
+    margin-top: 4px;
+  }
+
+  .compare-divider {
+    margin: 10px 0;
+  }
+
+  .compare-list {
+    gap: clamp(8px, 1.8vw, 12px);
+    margin-bottom: 12px;
+  }
+
+  .compare-row {
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .status-icon {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    font-size: 0.58rem;
+    margin-top: 2px;
+  }
+
+  .compare-row-content strong {
+    font-size: clamp(0.68rem, 2.1vw, 0.80rem);
+    line-height: 1.2;
+    margin-bottom: 1px;
+    word-break: break-word;
+  }
+
+  .compare-row-content p {
+    font-size: clamp(0.60rem, 1.7vw, 0.70rem);
+    line-height: 1.25;
+  }
+
+  .compare-bottom {
+    gap: 6px;
+  }
+
+  .legacy-bottom .bottom-tag {
+    font-size: clamp(0.58rem, 1.7vw, 0.68rem);
+    padding: 6px 4px;
+    line-height: 1.25;
+  }
+
+  .featured-bottom .btn {
+    font-size: clamp(0.68rem, 2.1vw, 0.80rem);
+    padding: 8px 6px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+    min-height: unset;
+    width: 100%;
+  }
+
+  .safe-badge {
+    font-size: clamp(0.56rem, 1.5vw, 0.66rem);
+    line-height: 1.2;
+    margin-top: 2px;
   }
 
   .stage-3d-world {
@@ -3088,5 +3252,20 @@ a {
 
   .laptop-sidebar {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .compare-grid {
+    gap: 6px;
+  }
+
+  .compare-card {
+    padding: 16px 8px;
   }
 }
