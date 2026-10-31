@@ -119,15 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const carLoopDurationMs = 14000;  // 14 seconds
   const bikeLoopDurationMs = 17000; // 17 seconds
 
-  // MG Road coordinates for Car
+  // MG Road coordinates for Car (center of street-h1)
   const carStartX = -40;
   const carEndX = 860;
-  const carY = 160;
+  const carY = 172;
 
-  // Residency Road coordinates for Bike
+  // Residency Road coordinates for Bike (center of street-h2)
   const bikeStartX = -40;
   const bikeEndX = 820;
-  const bikeY = 275;
+  const bikeY = 284;
 
   function animateVehiclesAndPolylines(timestamp) {
     if (!lastTimestamp) lastTimestamp = timestamp;
@@ -154,10 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
         carLaserPulse.setAttribute('d', `M ${carStartX},${carY} L ${Math.round(currentCarX)},${carY}`);
       }
 
-      // Position Car DIV in exact lockstep
+      // Position Car directly on road (taillight connects to green polyline)
       if (targetCar) {
         const carPercent = (currentCarX / 1000) * 100;
-        targetCar.style.left = `calc(${carPercent}% - 30px)`;
+        targetCar.style.left = `calc(${carPercent}% - 6px)`;
       }
 
       // Live Telemetry updates for Car
@@ -205,10 +205,10 @@ document.addEventListener('DOMContentLoaded', () => {
         bikeLaserPulse.setAttribute('d', `M ${bikeStartX},${bikeY} L ${Math.round(currentBikeX)},${bikeY}`);
       }
 
-      // Position Bike DIV in exact lockstep
+      // Position Bike directly on road (rear wheel connects to green polyline)
       if (targetBike) {
         const bikePercent = (currentBikeX / 1000) * 100;
-        targetBike.style.left = `calc(${bikePercent}% - 24px)`;
+        targetBike.style.left = `calc(${bikePercent}% - 4px)`;
       }
 
       // Live Telemetry updates for Bike
